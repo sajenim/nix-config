@@ -406,16 +406,16 @@
         ]
       },
       "locked": {
-        "lastModified": 1747331121,
-        "narHash": "sha256-3MmiUN/jOHBHQUnjqzg6qKArc17j2OS6jisEppDY4g8=",
+        "lastModified": 1748487945,
+        "narHash": "sha256-e9zc/rHdoH9i+sFFhhQiKoF6IuD+T2rB/nUyPaO7CCg=",
         "owner": "nix-community",
         "repo": "home-manager",
-        "rev": "1eec32f0efe3b830927989767a9e6ece0d82d608",
+        "rev": "0d13ea58d565d3c1c1468ddae1f623316dc395d9",
         "type": "github"
       },
       "original": {
         "owner": "nix-community",
-        "ref": "release-24.11",
+        "ref": "release-25.05",
         "repo": "home-manager",
         "type": "github"
       }
@@ -494,11 +494,11 @@
         "nixpkgs": "nixpkgs_3"
       },
       "locked": {
-        "lastModified": 1747620481,
-        "narHash": "sha256-MiZ5Z7MHP42+ck277fzzu4C8w1K6OAxM5PhCQX22+FA=",
+        "lastModified": 1748570485,
+        "narHash": "sha256-oDnEc/rxyDf+uUXO56Z2TJtrrQoBe0Z4MCIRaY6lVZ0=",
         "owner": "Infinidoge",
         "repo": "nix-minecraft",
-        "rev": "b15bd5c18f94065f96b5a46e57c506e5f30c3918",
+        "rev": "6c961ee42ff2301ee61c75aa42cbe8c8adecf3c8",
         "type": "github"
       },
       "original": {
@@ -555,11 +555,11 @@
     },
     "nixpkgs-unstable": {
       "locked": {
-        "lastModified": 1747542820,
-        "narHash": "sha256-GaOZntlJ6gPPbbkTLjbd8BMWaDYafhuuYRNrxCGnPJw=",
+        "lastModified": 1748370509,
+        "narHash": "sha256-QlL8slIgc16W5UaI3w7xHQEP+Qmv/6vSNTpoZrrSlbk=",
         "owner": "nixos",
         "repo": "nixpkgs",
-        "rev": "292fa7d4f6519c074f0a50394dbbe69859bb6043",
+        "rev": "4faa5f5321320e49a78ae7848582f684d64783e9",
         "type": "github"
       },
       "original": {
@@ -602,16 +602,16 @@
     },
     "nixpkgs_4": {
       "locked": {
-        "lastModified": 1747485343,
-        "narHash": "sha256-YbsZyuRE1tobO9sv0PUwg81QryYo3L1F3R3rF9bcG38=",
+        "lastModified": 1748437600,
+        "narHash": "sha256-hYKMs3ilp09anGO7xzfGs3JqEgUqFMnZ8GMAqI6/k04=",
         "owner": "nixos",
         "repo": "nixpkgs",
-        "rev": "9b5ac7ad45298d58640540d0323ca217f32a6762",
+        "rev": "7282cb574e0607e65224d33be8241eae7cfe0979",
         "type": "github"
       },
       "original": {
         "owner": "nixos",
-        "ref": "nixos-24.11",
+        "ref": "nixos-25.05",
         "repo": "nixpkgs",
         "type": "github"
       }
@@ -703,11 +703,11 @@
         "nixvim": "nixvim_2"
       },
       "locked": {
-        "lastModified": 1747625133,
-        "narHash": "sha256-CcLAy4g4RTxetDoaEVxQ05PLnRXUj3snYQoMdpk7GEQ=",
+        "lastModified": 1747738086,
+        "narHash": "sha256-FZlSk1Jo0ofRIaA5H6hNCW6qaQUpVtpn4SF5I9VOMIw=",
         "ref": "refs/heads/master",
-        "rev": "a05b6e401c09b7d5eadd15e39dc97398bc3cf85d",
-        "revCount": 80,
+        "rev": "b8526d77c09f09847fc28e2b3352291e5771e742",
+        "revCount": 81,
         "type": "git",
         "url": "https://git.sajenim.dev/jasmine/nixvim-config.git"
       },
@@ -998,11 +998,11 @@
         "nixpkgs": "nixpkgs_9"
       },
       "locked": {
-        "lastModified": 1747628408,
-        "narHash": "sha256-529qpELpG4D7pNslmyX3FszqjzxhJvlxTWTRJ0EA9YE=",
+        "lastModified": 1747754433,
+        "narHash": "sha256-TGH+IhbDPuJ4nnWveRmXL5+R2SAgu5nUvm2M1534rRc=",
         "ref": "refs/heads/master",
-        "rev": "fa9754e0b61a1a9b586dcaa1d1b989d7861f6c68",
-        "revCount": 35,
+        "rev": "abf0c78203f7644b4cca9a72fadefd142ab89604",
+        "revCount": 36,
         "type": "git",
         "url": "https://git.sajenim.dev/jasmine/xmonad-config.git"
       },
