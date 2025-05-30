@@ -16,10 +16,6 @@
     enableCompletion = true;
     dotDir = ".config/zsh";
 
-    # Commands that should be added to to top of '.zshrc'
-    initExtraFirst = ''
-    '';
-
     # Aliases
     shellAliases = {
       c = "clear";
@@ -44,7 +40,7 @@
     ];
 
     # Extra commands that should be added to '.zshrc'
-    initExtra = ''
+    initContent = ''
       eval "$(direnv hook zsh)"
       source ${pkgs.zsh-vi-mode}/share/zsh-vi-mode/zsh-vi-mode.plugin.zsh
       path+=('/home/sajenim/.repositories/sysadmin.sh/bin')
