@@ -7,6 +7,7 @@
     ./lighttpd
     ./minecraft
     ./mpd
+    ./murmur
     ./traefik
   ];
 }
