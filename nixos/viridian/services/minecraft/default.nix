@@ -49,6 +49,8 @@ in {
           motd = "\\u00A7aKanto Network \\u00A7e[1.19.2]\\u00A7r\\n\\u00A78I'll Use My Trusty Frying Pan As A Drying Pan!";
           server-port = 25565;
           white-list = true;
+          spawn-protection = 0;
+          allow-cheats = true;
         };
 
         # Things to symlink into this server's data directory.
@@ -81,7 +83,7 @@ in {
 
   services.traefik.dynamicConfigOptions.http.routers = {
     minecraft = {
-      rule = "Host(`minecraft.home.arpa`)";
+      rule = "Host(`mc.home.arpa`)";
       entryPoints = [
         "websecure"
       ];
