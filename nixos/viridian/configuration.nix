@@ -24,9 +24,10 @@
       enable = true;
       allowPing = true;
       allowedTCPPorts = [
-        80
-        443
-        6600
+        80   # http
+        443  # https
+        6600 # mpd
+        6667 # inspircd
       ];
     };
   };

@@ -3,6 +3,7 @@
     ./borgbackup
     ./crowdsec
     ./forgejo
+    ./inspircd
     ./jupyterhub
     ./lighttpd
     ./minecraft
