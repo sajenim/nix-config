@@ -1,15 +1,22 @@
-{pkgs, ...}: {
+{
+  inputs,
+  pkgs,
+  ...
+}: {
   imports = [
     ./git.nix
     ./mpd.nix
-    ./nvim.nix
-    ./remarkable.nix
     ./ssh.nix
-    ./zsh.nix
   ];
 
-  home.packages = with pkgs; [
-    pulsemixer
-    unstable.qmk
-  ];
+  home.packages = with pkgs;
+    [
+      mum
+      pulsemixer
+      unstable.qmk
+      unstable.rmapi
+    ]
+    ++ [
+      inputs.remarks.packages.${pkgs.system}.default
+    ];
 }

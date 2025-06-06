@@ -27,7 +27,7 @@
         80   # http
         443  # https
         6600 # mpd
-        6667 # inspircd
+        6697 # inspircd
       ];
     };
   };
@@ -35,6 +35,8 @@
   # Configure programs
   programs = {
     zsh.enable = true;
+    # Load and unload environment variables
+    direnv.enable = true;
   };
 
   # Manage linux containers

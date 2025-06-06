@@ -1,6 +1,6 @@
 {outputs, ...}: {
   imports = [
-    ../features/cli
+    ./zsh.nix
   ];
 
   nixpkgs = {

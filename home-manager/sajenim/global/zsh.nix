@@ -14,16 +14,18 @@
       enable = true;
     };
     enableCompletion = true;
+
+    # Configuration directory
     dotDir = ".config/zsh";
 
-    # Aliases
     shellAliases = {
+      # Single letter aliases
       c = "clear";
+      v = "nvim";
+
+      # Double letter aliases
       la = "ls -a";
       ll = "ls -l";
-      tt = "wezterm cli set-tab-title ";
-      mount-backup = "sshfs viridian:/srv/shares/sajenim /home/sajenim/.backup";
-      mount-turing = "sshfs turing:/home/jwils254 /home/sajenim/.turing";
     };
 
     # Install plugins
@@ -43,7 +45,6 @@
     initContent = ''
       eval "$(direnv hook zsh)"
       source ${pkgs.zsh-vi-mode}/share/zsh-vi-mode/zsh-vi-mode.plugin.zsh
-      path+=('/home/sajenim/.repositories/sysadmin.sh/bin')
       bindkey "^[[1;5C" forward-word
       bindkey "^[[1;5D" backward-word
       export PATH
