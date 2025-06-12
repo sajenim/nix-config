@@ -27,7 +27,7 @@
         80   # http
         443  # https
         6600 # mpd
-        6697 # inspircd
+        6667 # inspircd
       ];
     };
   };
