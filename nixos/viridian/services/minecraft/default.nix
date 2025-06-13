@@ -6,9 +6,9 @@
   ...
 }: let
   modpack = pkgs.fetchPackwizModpack rec {
-    version = "7091175";
+    version = "4d507be";
     url = "https://raw.githubusercontent.com/sajenim/minecraft-modpack/${version}/pack.toml";
-    packHash = "sha256-9HZipG6/8GKnbXp0Qfug8Y2Db96hageUtprAuuuuGPM=";
+    packHash = "sha256-1Za6ZSLVE6jbwlqkJriQNvuoFAnOVz76t8BWtR6al7o=";
   };
   mcVersion = modpack.manifest.versions.minecraft;
   fabricVersion = modpack.manifest.versions.fabric;
@@ -46,7 +46,7 @@ in {
         serverProperties = {
           gamemode = "survival";
           difficulty = "normal";
-          motd = "\\u00A7aKanto Network \\u00A7e[1.19.2]\\u00A7r\\n\\u00A78I'll Use My Trusty Frying Pan As A Drying Pan!";
+          motd = "\\u00A7aKanto Network \\u00A7e[1.20.1]\\u00A7r\\n\\u00A78I'll Use My Trusty Frying Pan As A Drying Pan!";
           server-port = 25565;
           white-list = true;
           spawn-protection = 0;
@@ -61,9 +61,6 @@ in {
         # Things to copy into this server's data directory.
         files = {
           "ops.json" = ./ops.json;
-
-          # Youre in grave danger
-          "config/yigd.toml" = "${modpack}/config/yigd.toml";
         };
 
         # Value of systemd's `Restart=` service configuration option.
@@ -76,27 +73,35 @@ in {
 
     # Open firewall for all servers.
     openFirewall = true;
+    
+    # Enable systemd socket activation. 
+    managementSystem.systemd-socket.enable = true;
 
-    # https://account.mojang.com/documents/minecraft_eula
+    # Accept the minecraft EULA.
     eula = true;
+    # https://account.mojang.com/documents/minecraft_eula
   };
 
-  services.traefik.dynamicConfigOptions.http.routers = {
-    minecraft = {
-      rule = "Host(`mc.home.arpa`)";
-      entryPoints = [
-        "websecure"
-      ];
-      service = "minecraft";
+  # Enable the Traefik reverse proxy.
+  services.traefik.dynamicConfigOptions.http = { 
+    # Enable the Traefik HTTP router for the minecraft server.
+    routers = {
+      minecraft = {
+        rule = "Host(`mc.home.arpa`)";
+        entryPoints = [
+          "websecure"
+        ];
+        service = "minecraft";
+      };
     };
-  };
+    # Define the service for the minecraft server.
+    services = {
+      minecraft.loadBalancer.servers = [
+        {url = "http://127.0.0.1:${toString config.services.minecraft-servers.servers.kanto.serverProperties.server-port}";}
+      ];
+    };
 
-  services.traefik.dynamicConfigOptions.http.services = {
-    minecraft.loadBalancer.servers = [
-      {url = "http://127.0.0.1:${toString config.services.minecraft-servers.servers.kanto.serverProperties.server-port}";}
-    ];
-  };
-
+  # Enable persistence for the data directory.
   environment.persistence."/persist" = {
     directories = [
       {
@@ -106,7 +111,8 @@ in {
       }
     ];
   };
-  
+
+  # Allow unfree packages.
   nixpkgs.config.allowUnfreePredicate = pkg: builtins.elem (lib.getName pkg) [
     "minecraft-server"
   ];
