@@ -6,9 +6,9 @@
   ...
 }: let
   modpack = pkgs.fetchPackwizModpack rec {
-    version = "4d507be";
+    version = "1481dcb";
     url = "https://raw.githubusercontent.com/sajenim/minecraft-modpack/${version}/pack.toml";
-    packHash = "sha256-1Za6ZSLVE6jbwlqkJriQNvuoFAnOVz76t8BWtR6al7o=";
+    packHash = "sha256-wFle7BVp4pHjhA3Zp9+9eVFf7IYa1usyNFpZ8e/jstU=";
   };
   mcVersion = modpack.manifest.versions.minecraft;
   fabricVersion = modpack.manifest.versions.fabric;
@@ -61,6 +61,9 @@ in {
         # Things to copy into this server's data directory.
         files = {
           "ops.json" = ./ops.json;
+
+          # Your'r in grave danger!
+          "config/yigd.json" = "${modpack}/config/yigd.json";
         };
 
         # Value of systemd's `Restart=` service configuration option.
@@ -94,12 +97,14 @@ in {
         service = "minecraft";
       };
     };
+
     # Define the service for the minecraft server.
     services = {
       minecraft.loadBalancer.servers = [
         {url = "http://127.0.0.1:${toString config.services.minecraft-servers.servers.kanto.serverProperties.server-port}";}
       ];
     };
+  };
 
   # Enable persistence for the data directory.
   environment.persistence."/persist" = {
