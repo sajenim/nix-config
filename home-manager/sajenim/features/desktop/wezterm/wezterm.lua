@@ -91,7 +91,7 @@ config.keys = {
 	--
 
 	{ -- Spawn new tab
-		key = "Enter",
+		key = "t",
 		mods = "LEADER",
 		action = wezterm.action.SpawnTab("CurrentPaneDomain"),
 	},
