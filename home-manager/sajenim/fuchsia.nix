@@ -3,7 +3,7 @@
     ./global
     ./features/cli
     ./features/desktop
-    ./features/editor
+    ./features/editors
     ./features/games
     ./features/printing
     ./features/university
