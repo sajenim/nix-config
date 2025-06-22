@@ -22,6 +22,7 @@
       (buildIdeWithPlugins pkgs.jetbrains "idea-community" [
         "IdeaVIM"
         "gruvbox-material-dark"
+        "eu.theblob42.idea.whichkey"
       ])
     ]); # https://github.com/theCapypara/nix-jetbrains-plugins
 
