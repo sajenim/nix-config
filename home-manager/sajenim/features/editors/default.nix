@@ -7,6 +7,7 @@
     [
       # Toolchains
       gcc
+      jdk17
       python313
 
       # Typesetting
