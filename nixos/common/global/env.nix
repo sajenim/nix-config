@@ -7,28 +7,27 @@
       home-manager
 
       # Useful system utilities
-      tree # directory structure
-      bc # basic calculator
-      vim # editor
-      ranger # console file manager
-      htop # system monitor
-      scrot # screenshot
-      jq # JSON processor
-      git # version control
-      nmap # network mapper
-      xclip # clipboard
-      ripgrep # searches the current directory for a regex pattern
-      sshfs # mount filesystems over SSH
-      feh # image viewer
-
-      # HTTP
-      curl # transfer dato to/from server
-      wget # download files from web
-
-      # Archive
-      unzip # extract zip archive
-      p7zip # extract 7z archive
+      tree
+      bc
+      fd
+      vim
+      ranger
+      htop
+      scrot
+      jq
+      git
+      nmap
+      xclip
+      ripgrep
+      sshfs
+      feh
+      curl
+      wget
+      unzip
+      p7zip
     ];
+
+    # List of directories to be symlinked to /run/current-system/sw
     pathsToLink = ["/share/zsh"];
   };
 
