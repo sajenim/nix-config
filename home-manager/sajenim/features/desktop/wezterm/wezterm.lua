@@ -14,6 +14,11 @@ local smart_splits = wezterm.plugin.require("https://github.com/mrjones2014/smar
 -- Do not check for or show window with update information
 config.check_for_updates = false
 
+-- Improve wezterm graphical performance 
+config.front_end = "OpenGL"
+config.max_fps = 144
+config.animation_fps = 144
+
 -- Font configuration
 config.font = wezterm.font("Fisa Code")
 config.font_size = 10.0
