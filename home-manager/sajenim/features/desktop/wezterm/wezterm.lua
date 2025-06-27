@@ -129,6 +129,27 @@ config.keys = {
 		action = wezterm.action.SplitHorizontal({ domain = "CurrentPaneDomain" }),
 	},
 
+  { -- If there is only one pane, split it vertically, otherwise toggle zoom on the first pane.
+    key = "`",
+    mods = "LEADER",
+    action = wezterm.action_callback(function(_, pane)
+      local tab = pane:tab()
+      local panes = tab:panes_with_info()
+      if #panes == 1 then
+        pane:split({
+          direction = "Bottom",
+          size = 0.3,
+        })
+      elseif not panes[1].is_zoomed then
+        panes[1].pane:activate()
+        tab:set_zoomed(true)
+      elseif panes[1].is_zoomed then
+        tab:set_zoomed(false)
+        panes[2].pane:activate()
+      end
+    end),
+  },
+
 	{ -- Close pane
 		key = "q",
 		mods = "LEADER",
