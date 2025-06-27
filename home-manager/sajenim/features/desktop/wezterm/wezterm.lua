@@ -87,7 +87,7 @@ config.colors = {
 config.disable_default_key_bindings = true
 
 -- Setup leader key
-config.leader = { key = "a", mods = "ALT", timeout_milliseconds = 1000 }
+config.leader = { key = "a", mods = "ALT", timeout_milliseconds = 2000 }
 
 -- General keymaps
 config.keys = {
