@@ -113,6 +113,12 @@ config.keys = {
 		action = wezterm.action.ActivateTabRelative(1),
 	},
 
+  { -- Close tab
+    key = "Q",
+    mods = "LEADER",
+    action = wezterm.action.CloseCurrentTab({ confirm = false }),
+  },
+
 	--
 	-- Pane management
 	--
