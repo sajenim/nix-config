@@ -14,6 +14,7 @@
       "/var/lib/forgejo"
       "/var/lib/jupyterhub"
       "/var/lib/minecraft"
+      "/var/lib/opengist"
       "/var/lib/traefik"
       # Multimedia
       "/srv/multimedia/containers/jellyfin"
