@@ -118,6 +118,11 @@
                 main = "sajkbd.io";
                 sans = ["*.sajkbd.io"];
               }
+              {
+                # Pastes
+                main = "ps7e.xyz";
+                sans = ["*.ps7e.xyz"];
+              }
             ];
           };
         };

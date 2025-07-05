@@ -9,6 +9,7 @@
     ./minecraft
     ./mpd
     ./murmur
+    ./opengist
     ./traefik
   ];
 }
