@@ -1,6 +1,7 @@
 {
   inputs,
   pkgs,
+  lib,
   ...
 }: {
   home.packages = with pkgs;
@@ -20,12 +21,19 @@
     ]
     # Install jetbrains IDEs with plugins
     ++ (with inputs.nix-jetbrains-plugins.lib."${system}"; [
-      (buildIdeWithPlugins pkgs.jetbrains "idea-community" [
+      (buildIdeWithPlugins pkgs.jetbrains "idea-ultimate" [
         "IdeaVIM"
         "gruvbox-material-dark"
       ])
     ]); # https://github.com/theCapypara/nix-jetbrains-plugins
 
-  # Copy our vim configuration file for jetbrains IDEs 
+  # Allow unfree packages for jetbrains IDEs
+  nixpkgs.config.allowUnfreePredicate = pkg:
+    builtins.elem (lib.getName pkg) [
+      "idea-ultimate"
+      "idea-ultimate-with-plugins"
+    ];
+
+  # Copy our vim configuration file for jetbrains IDEs
   home.file.".ideavimrc".source = ./ideavimrc;
 }
