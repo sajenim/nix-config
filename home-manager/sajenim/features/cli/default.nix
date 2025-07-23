@@ -12,6 +12,7 @@
   home.packages = with pkgs;
     [
       mum
+      btop
       pulsemixer
       unstable.qmk
       unstable.rmapi
