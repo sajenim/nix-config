@@ -32,11 +32,11 @@
         "treefmt-nix": "treefmt-nix"
       },
       "locked": {
-        "lastModified": 1749289693,
-        "narHash": "sha256-fSMlofc9z/G/bfwgtDD+zy9RBqKR71FsLNU8mfLwPq0=",
+        "lastModified": 1752094135,
+        "narHash": "sha256-kd5/x5SshFVFHWUf/7rRqXQ06aUaD6VJdUYRCDUHHo0=",
         "owner": "oddlama",
         "repo": "agenix-rekey",
-        "rev": "57cb67bc61f8421c576085d595d902f02828d953",
+        "rev": "395cdb1631e9715e37d0e859a2b1da63f0ae333b",
         "type": "github"
       },
       "original": {
@@ -51,11 +51,11 @@
         "nixpkgs": "nixpkgs_2"
       },
       "locked": {
-        "lastModified": 1742920128,
-        "narHash": "sha256-VPjnjtAksihLezhc+ZmnqGu18mHr4QVKa1kSZQ8rJL4=",
+        "lastModified": 1752497357,
+        "narHash": "sha256-9epXn1+T6U4Kfyw8B9zMzbERxDB3VfaPXhVebtai6CE=",
         "ref": "refs/heads/main",
-        "rev": "40e937689d318ee85b1d9763189a65e6f0b4028d",
-        "revCount": 40,
+        "rev": "84db7dcea77f7f477d79e69e35fb0bb560232667",
+        "revCount": 42,
         "type": "git",
         "url": "https://codeberg.org/kampka/nix-flake-crowdsec.git"
       },
@@ -427,11 +427,11 @@
         ]
       },
       "locked": {
-        "lastModified": 1751810233,
-        "narHash": "sha256-kllkNbIqQi3VplgTMeGzuh1t8Gk8TauvkTRt93Km+tQ=",
+        "lastModified": 1753198507,
+        "narHash": "sha256-NCG6izg+B3zsCwcT6+ssiWT3Y202jhOqGL/zh6fofa4=",
         "owner": "nix-community",
         "repo": "home-manager",
-        "rev": "9b0873b46c9f9e4b7aa01eb634952c206af53068",
+        "rev": "fce051eaf881220843401df545a1444ab676520c",
         "type": "github"
       },
       "original": {
@@ -515,11 +515,11 @@
         "systems": "systems_3"
       },
       "locked": {
-        "lastModified": 1751715353,
-        "narHash": "sha256-ckWeqxU3F+ppNjnc06laVdsJtXzMkjzuBclPxVUzG64=",
+        "lastModified": 1753002056,
+        "narHash": "sha256-k+X/cQ0ptJVKtqCcs5dyczogKceoPbBY0598zTZieFU=",
         "owner": "theCapypara",
         "repo": "nix-jetbrains-plugins",
-        "rev": "c8d09caac084f359a6b9d43abfac43970a143976",
+        "rev": "ff18ab8a55e4fc518d4d977f74c1c67913830822",
         "type": "github"
       },
       "original": {
@@ -535,11 +535,11 @@
         "nixpkgs": "nixpkgs_4"
       },
       "locked": {
-        "lastModified": 1751594842,
-        "narHash": "sha256-GhGppbb1lA145Mog9E45FzD+eErOkTwZXIz2bW6AZrA=",
+        "lastModified": 1753064794,
+        "narHash": "sha256-3EgmLyksi5Jpb54tNymeEBY8/h/G1Gf5HAQw4gm1d+8=",
         "owner": "Infinidoge",
         "repo": "nix-minecraft",
-        "rev": "2831e6d199ca5ac7df8108e4adc3f12974c9807f",
+        "rev": "95db5df2b845b360d0a9b79cbec9f95290a93de9",
         "type": "github"
       },
       "original": {
@@ -596,11 +596,11 @@
     },
     "nixpkgs-unstable": {
       "locked": {
-        "lastModified": 1751637120,
-        "narHash": "sha256-xVNy/XopSfIG9c46nRmPaKfH1Gn/56vQ8++xWA8itO4=",
+        "lastModified": 1752950548,
+        "narHash": "sha256-NS6BLD0lxOrnCiEOcvQCDVPXafX1/ek1dfJHX1nUIzc=",
         "owner": "nixos",
         "repo": "nixpkgs",
-        "rev": "5c724ed1388e53cc231ed98330a60eb2f7be4be3",
+        "rev": "c87b95e25065c028d31a94f06a62927d18763fdf",
         "type": "github"
       },
       "original": {
@@ -628,11 +628,11 @@
     },
     "nixpkgs_2": {
       "locked": {
-        "lastModified": 1742560374,
-        "narHash": "sha256-V53Y+3rlflieFdSEfKKCMUkmgHNubpzrrzXAa2cjXGg=",
+        "lastModified": 1752494135,
+        "narHash": "sha256-c3FvvJVKCcQhSDYaPS3fDO4zcCnvOnfKOZsLqoAa2k4=",
         "owner": "nixos",
         "repo": "nixpkgs",
-        "rev": "073101341baba6c6471ec2156395f6d55c5134db",
+        "rev": "e1735873e41eb0e1f5272c61c0246269d8f5439b",
         "type": "github"
       },
       "original": {
@@ -675,11 +675,11 @@
     },
     "nixpkgs_5": {
       "locked": {
-        "lastModified": 1751741127,
-        "narHash": "sha256-t75Shs76NgxjZSgvvZZ9qOmz5zuBE8buUaYD28BMTxg=",
+        "lastModified": 1753115646,
+        "narHash": "sha256-yLuz5cz5Z+sn8DRAfNkrd2Z1cV6DaYO9JMrEz4KZo/c=",
         "owner": "nixos",
         "repo": "nixpkgs",
-        "rev": "29e290002bfff26af1db6f64d070698019460302",
+        "rev": "92c2e04a475523e723c67ef872d8037379073681",
         "type": "github"
       },
       "original": {
@@ -760,11 +760,11 @@
         "nixvim": "nixvim_2"
       },
       "locked": {
-        "lastModified": 1750937808,
-        "narHash": "sha256-OfxOOL+BmLPcIIRIOS2LhjQp/H4wsZvY5cSAtIGp6s0=",
+        "lastModified": 1752003288,
+        "narHash": "sha256-6QcqhXR817+mwg9xh/sie8vMJ4XiPUkZwM0kAf0qQ0A=",
         "ref": "refs/heads/master",
-        "rev": "b4c2763ebb836cb9bcea6f7ab826dbf8deeb698d",
-        "revCount": 97,
+        "rev": "5d15d232763b4f2457b7d9b4015824861a133576",
+        "revCount": 98,
         "type": "git",
         "url": "https://git.sajenim.dev/jasmine/nixvim-config.git"
       },
@@ -869,11 +869,11 @@
         "poetry2nix": "poetry2nix"
       },
       "locked": {
-        "lastModified": 1749656979,
-        "narHash": "sha256-RUiNsmyyHOgI49gY9Z+MZ3R0hVq9nrsFnUHN0S58rck=",
+        "lastModified": 1752248822,
+        "narHash": "sha256-5f3cVs2T68jkQELTjMqrgkO3J2qa8l6bFI9b+ghYClY=",
         "owner": "Scrybbling-together",
         "repo": "remarks",
-        "rev": "b418ebb6b87e125b8a7b32672ecaa2252b1a2655",
+        "rev": "737ddccba55407390bdfc693acdbc6046e053948",
         "type": "github"
       },
       "original": {
