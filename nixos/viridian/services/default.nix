@@ -10,6 +10,7 @@
     ./mpd
     ./murmur
     ./opengist
+    ./projectsend
     ./traefik
   ];
 }
