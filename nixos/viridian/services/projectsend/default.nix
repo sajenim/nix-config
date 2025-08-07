@@ -36,6 +36,8 @@
       extraOptions = [
         "--network=projectsend"
       ];
+      # Override the default user and group for MariaDB
+      user = "1000:100";
     };
   };
 
@@ -59,7 +61,19 @@
   environment.persistence."/persist" = {
     directories = [
       {
-        directory = "/var/lib/projectsend";
+        directory = "/var/lib/projectsend/config";
+        user = "sajenim";
+        group = "users";
+      }
+
+      {
+        directory = "/var/lib/projectsend/data";
+        user = "sajenim";
+        group = "users";
+      }
+
+      {
+        directory = "/var/lib/projectsend/mysql";
         user = "sajenim";
         group = "users";
       }
