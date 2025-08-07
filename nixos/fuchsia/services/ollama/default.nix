@@ -10,9 +10,10 @@
 
     # Language models to install
     loadModels = [
-      "llama3.1:8b"
-      # Uncensored models
-      "huihui_ai/gemma3-abliterated:4b"
+      "deepseek-r1:8b"
+      "gemma3:12b"
+      "qwen3:8b"
+      "llama3:8b"
     ];
   };
 }
