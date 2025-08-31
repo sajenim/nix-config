@@ -20,7 +20,10 @@
   networking = {
     hostName = "viridian";
     networkmanager.enable = true;
-    firewall = {
+  };
+
+  # Firewall configuration
+  networking.firewall = {
       enable = true;
       allowPing = true;
       allowedTCPPorts = [
@@ -29,7 +32,6 @@
         6600 # mpd
         6667 # inspircd
       ];
-    };
   };
 
   # Configure programs

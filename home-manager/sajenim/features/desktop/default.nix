@@ -5,7 +5,9 @@
 }: {
   imports = [
     ./cava
+    ./dunst
     ./mpv
+    ./obs
     ./picom
     ./wezterm
   ];
@@ -16,6 +18,9 @@
     gimp
     piper
     zathura
+
+    # KDE Packages
+    kdePackages.kdenlive
   ];
 
   home.file = {

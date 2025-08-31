@@ -7,8 +7,6 @@
     paths = [
       # Websites
       "/srv/www/sajenim.dev"
-      # File shares
-      "/srv/shares/sajenim"
       # Services
       "/var/lib/crowdsec"
       "/var/lib/forgejo"

@@ -13,7 +13,6 @@
     [
       mum
       btop
-      pulsemixer
       unstable.qmk
       unstable.rmapi
     ]
