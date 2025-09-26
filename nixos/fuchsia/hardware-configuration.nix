@@ -37,7 +37,7 @@
       };
       systemd-boot = {
         enable = true;
-        configurationLimit = 20;
+        configurationLimit = 14;
       };
     };
   };
