@@ -12,6 +12,7 @@
       "/var/lib/docker"
       "/var/lib/flatpak"
       "/var/lib/nixos"
+      "/var/lib/private"
       "/var/lib/systemd/coredump"
       "/etc/NetworkManager/system-connections"
     ];
