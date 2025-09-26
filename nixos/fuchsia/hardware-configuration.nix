@@ -13,14 +13,14 @@
   boot = {
     # Initial ramdisk
     initrd = {
-      # The modules listed here are available in the initrd, but are only loaded on demand.
-      availableKernelModules = ["nvme" "xhci_pci" "ahci" "usb_storage" "usbhid" "sd_mod"];
       # List of modules that are always loaded by the initrd.
       kernelModules = ["kvm-amd" "amdgpu"];
+      # The modules listed here are available in the initrd, but are only loaded on demand.
+      availableKernelModules = ["nvme" "xhci_pci" "ahci" "usb_storage" "usbhid" "sd_mod"];
     };
 
     # Linux kernel used by NixOS.
-    kernelPackages = pkgs.linuxPackages_latest;
+    kernelPackages = pkgs.linuxPackages;
     # Parameters added to the kernel command line.
     kernelParams = [
       # Enable amdgpu driver sysfs API that allows fine grain control of GPU
