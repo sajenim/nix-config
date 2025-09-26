@@ -19,8 +19,12 @@
 
   # Use our yubikey as a user login or for sudo access
   security.pam.services = {
-    login.u2fAuth = true;
-    sudo.u2fAuth = true;
+    login = {
+      u2fAuth = true;
+    };
+    sudo = {
+      u2fAuth = true;
+    };
   };
 
   # Configure services
