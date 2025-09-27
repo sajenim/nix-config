@@ -25,6 +25,11 @@
 
     # Location to store models
     models = "/srv/ollama/models";
+
+    # Increase context window for aider
+    environmentVariables = {
+      OLLAMA_CONTEXT_LENGTH = "8192";
+    };
   };
 
   # Enable the Open-WebUI server 
