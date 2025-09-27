@@ -30,6 +30,8 @@
   # Enable the Open-WebUI server 
   services.open-webui = {
     enable = true;
+    host = "fuchsia.home.arpa";
+    openFirewall = true;
   };
 
   # Mount our subvolume for storage of models

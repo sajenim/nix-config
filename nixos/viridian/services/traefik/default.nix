@@ -9,6 +9,8 @@
   imports = [
     "${inputs.nixpkgs-unstable}/nixos/modules/services/web-servers/traefik.nix"
     ./middlewares.nix
+    ./routers.nix
+    ./services.nix
   ];
 
   age.secrets.traefik = {
@@ -152,17 +154,6 @@
       # Disables SSL certificate verification between our traefik instance and our backend
       serversTransport = {
         insecureSkipVerify = true;
-      };
-    };
-
-    # Setup our dashboard
-    dynamicConfigOptions.http.routers = {
-      traefik-dashboard = {
-        rule = "Host(`traefik.home.arpa`)";
-        entryPoints = [
-          "websecure"
-        ];
-        service = "api@internal";
       };
     };
   };
