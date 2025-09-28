@@ -26,7 +26,7 @@
     # Location to store models
     models = "/srv/ollama/models";
 
-    # Increase context window for aider
+    # Increase context window
     environmentVariables = {
       OLLAMA_CONTEXT_LENGTH = "8192";
     };
