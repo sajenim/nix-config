@@ -14,6 +14,10 @@
       # Typesetting
       pandoc
       texliveFull
+
+      # AI-powered coding assistant and CLI tool
+      claude-code
+      unstable.mcp-nixos
     ]
     ++ [
       # Our personal neovim configuration.
@@ -27,13 +31,17 @@
       ])
     ]); # https://github.com/theCapypara/nix-jetbrains-plugins
 
-  # Allow unfree packages for jetbrains IDEs
+  # Allow unfree packages for proprietary software
   nixpkgs.config.allowUnfreePredicate = pkg:
     builtins.elem (lib.getName pkg) [
+      "claude-code"
       "idea-ultimate"
-      "idea-ultimate-with-plugins"
+      "idea-ultimate-with-plugins" 
     ];
 
-  # Copy our vim configuration file for jetbrains IDEs
-  home.file.".ideavimrc".source = ./ideavimrc;
+  # Copy our configuration files to home directory
+  home.file = {
+    ".ideavimrc".source = ./ideavimrc;
+    ".claude/settings.json".source = ./claude-settings.json;
+  };
 }
