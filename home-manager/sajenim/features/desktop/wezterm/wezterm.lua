@@ -149,7 +149,7 @@ config.keys = {
         })
         pane:split({
           direction = "Left",
-          size = 0.26,
+          size = 0.28,
           args = { "claude" }
         })
 
