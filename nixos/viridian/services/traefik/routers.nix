@@ -7,13 +7,5 @@
       ];
       service = "api@internal";
     };
-
-    open-webui = {
-      rule = "Host(`ollama.home.arpa`)";
-      entryPoints = [
-        "websecure"
-      ];
-      service = "open-webui";
-    };
   };
 }
