@@ -124,13 +124,13 @@ config.keys = {
 	--
 
 	{ -- Split pane vertically
-		key = "v",
+		key = "s",
 		mods = "LEADER",
 		action = wezterm.action.SplitVertical({ domain = "CurrentPaneDomain" }),
 	},
 
 	{ -- Split pane horizontally
-		key = "s",
+		key = "v",
 		mods = "LEADER",
 		action = wezterm.action.SplitHorizontal({ domain = "CurrentPaneDomain" }),
 	},
