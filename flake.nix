@@ -31,6 +31,7 @@
     nix-minecraft.url = "github:Infinidoge/nix-minecraft";
     remarks.url = "github:Scrybbling-together/remarks";
     nix-jetbrains-plugins.url = "github:theCapypara/nix-jetbrains-plugins";
+    claude-code.url = "github:sadjow/claude-code-nix";
   };
 
   outputs = {
