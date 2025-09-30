@@ -4,6 +4,12 @@
   lib,
   ...
 }: {
+  # Add claude-code overlay to make the package available
+  nixpkgs.overlays = [
+    inputs.claude-code.overlays.default
+  ];
+
+  # Development tools and editors
   home.packages = with pkgs;
     [
       # Toolchains
