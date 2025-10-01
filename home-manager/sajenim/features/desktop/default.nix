@@ -5,6 +5,7 @@
 }: {
   imports = [
     ./cava
+    ./discord
     ./dunst
     ./mpv
     ./obs
