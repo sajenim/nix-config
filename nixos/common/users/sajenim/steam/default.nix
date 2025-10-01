@@ -27,10 +27,4 @@
     "d /home/sajenim/.local 0755 sajenim users -"
     "d /home/sajenim/.local/share 0755 sajenim users -"
   ];
-
-  nixpkgs.config.allowUnfreePredicate = pkg:
-    builtins.elem (lib.getName pkg) [
-      "steam"
-      "steam-unwrapped"
-    ];
 }

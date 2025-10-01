@@ -37,14 +37,6 @@
       ])
     ]); # https://github.com/theCapypara/nix-jetbrains-plugins
 
-  # Allow unfree packages for proprietary software
-  nixpkgs.config.allowUnfreePredicate = pkg:
-    builtins.elem (lib.getName pkg) [
-      "claude-code"
-      "idea-ultimate"
-      "idea-ultimate-with-plugins" 
-    ];
-
   # Copy our configuration files to home directory
   home.file = {
     ".ideavimrc".source = ./ideavimrc;

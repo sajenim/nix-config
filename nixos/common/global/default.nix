@@ -1,4 +1,4 @@
-{outputs, ...}: {
+{outputs, lib, ...}: {
   imports = [
     ./age.nix
     ./env.nix
@@ -15,6 +15,18 @@
     ];
     config = {
       allowUnfree = false;
+      # Centralized unfree package allowlist for NixOS system configuration.
+      # Note: nixpkgs.config.allowUnfreePredicate doesn't merge across modules - only the
+      # last definition wins. To maintain explicit control over unfree packages, we list
+      # all allowed packages here rather than scattering predicates across system modules.
+      allowUnfreePredicate = pkg:
+        builtins.elem (lib.getName pkg) [
+          # Gaming
+          "steam"
+          "steam-unwrapped"
+          # Services
+          "minecraft-server"
+        ];
     };
   };
 
