@@ -96,7 +96,7 @@ config.keys = {
 	--
 
 	{ -- Spawn new tab
-		key = "Tab",
+		key = "t",
 		mods = "LEADER",
 		action = wezterm.action.SpawnTab("CurrentPaneDomain"),
 	},
@@ -161,8 +161,32 @@ config.keys = {
 		}),
 	},
 
-  { -- Toggle pane zoom
-    key = "t",
+	{ -- Focus previous pane
+		key = "PageUp",
+		mods = "ALT",
+		action = wezterm.action.ActivatePaneDirection("Prev"),
+	},
+
+	{ -- Focus next pane
+		key = "PageDown",
+		mods = "ALT",
+		action = wezterm.action.ActivatePaneDirection("Next"),
+	},
+
+	{ -- Rotate panes counter-clockwise
+		key = "PageUp",
+		mods = "ALT|CTRL",
+		action = wezterm.action.RotatePanes("CounterClockwise"),
+	},
+
+	{ -- Rotate panes clockwise
+		key = "PageDown",
+		mods = "ALT|CTRL",
+		action = wezterm.action.RotatePanes("Clockwise"),
+	},
+
+  { -- Maximize/zoom pane
+    key = "m",
     mods = "LEADER",
     action = wezterm.action.TogglePaneZoomState,
   },
