@@ -96,7 +96,7 @@ config.keys = {
 	--
 
 	{ -- Spawn new tab
-		key = "t",
+		key = "Tab",
 		mods = "LEADER",
 		action = wezterm.action.SpawnTab("CurrentPaneDomain"),
 	},
@@ -113,58 +113,61 @@ config.keys = {
 		action = wezterm.action.ActivateTabRelative(1),
 	},
 
-  { -- Close tab
+  { -- Quit/close tab
     key = "Q",
     mods = "LEADER",
     action = wezterm.action.CloseCurrentTab({ confirm = false }),
   },
 
+	{ -- Rename current tab
+		key = ",",
+		mods = "LEADER",
+		action = wezterm.action_callback(function(window, pane)
+			local success, stdout, stderr = wezterm.run_child_process({
+				"dmenu",
+				"-fn",
+				"Fisa Code-10",
+				"-p",
+				"Tab name:",
+			})
+			if success and stdout then
+				local name = stdout:gsub("\n", "")
+				if name ~= "" then
+					window:active_tab():set_title(name)
+				end
+			end
+		end),
+	},
+
 	--
 	-- Pane management
 	--
 
-	{ -- Split pane vertically
+	{ -- Split pane vertically (bottom, 30%)
 		key = "s",
 		mods = "LEADER",
-		action = wezterm.action.SplitVertical({ domain = "CurrentPaneDomain" }),
+		action = wezterm.action.SplitPane({
+			direction = "Down",
+			size = { Percent = 30 },
+		}),
 	},
 
-	{ -- Split pane horizontally
+	{ -- Split pane horizontally (left, 28%)
 		key = "v",
 		mods = "LEADER",
-		action = wezterm.action.SplitHorizontal({ domain = "CurrentPaneDomain" }),
+		action = wezterm.action.SplitPane({
+			direction = "Left",
+			size = { Percent = 28 },
+		}),
 	},
 
-  { -- Dynamic pane management
-    key = "`",
+  { -- Toggle pane zoom
+    key = "t",
     mods = "LEADER",
-    action = wezterm.action_callback(function(_, pane)
-      local tab = pane:tab()
-      local panes = tab:panes_with_info()
-
-      if #panes == 1 then
-        pane:split({
-          direction = "Bottom",
-          size = 0.30,
-        })
-        pane:split({
-          direction = "Left",
-          size = 0.28,
-          args = { "claude" }
-        })
-
-      elseif not panes[2].is_zoomed then
-        panes[2].pane:activate()
-        tab:set_zoomed(true)
-
-      elseif panes[2].is_zoomed then
-        tab:set_zoomed(false)
-        panes[3].pane:activate()
-      end
-    end),
+    action = wezterm.action.TogglePaneZoomState,
   },
 
-	{ -- Close pane
+	{ -- Quit/close pane
 		key = "q",
 		mods = "LEADER",
 		action = wezterm.action.CloseCurrentPane({ confirm = false }),
@@ -196,6 +199,15 @@ config.keys = {
 		action = wezterm.action.SendKey({ key = "w", mods = "CTRL" }),
 	},
 }
+
+-- Jump to specific tabs by number (ALT + 1-9)
+for i = 1, 9 do
+	table.insert(config.keys, {
+		key = tostring(i),
+		mods = "ALT",
+		action = wezterm.action.ActivateTab(i - 1),
+	})
+end
 
 --
 -- Enable neovim integration
