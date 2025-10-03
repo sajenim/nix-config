@@ -150,6 +150,29 @@ config.keys = {
 		action = wezterm.action.RotatePanes("Clockwise"),
 	},
 
+	{ -- Focus largest (master) pane
+		key = "Delete",
+		mods = "ALT",
+		action = wezterm.action_callback(function(window, pane)
+			local tab = window:active_tab()
+			local largest = nil
+			local largest_size = 0
+
+			for _, p in ipairs(tab:panes()) do
+				local dims = p:get_dimensions()
+				local size = dims.pixel_width * dims.pixel_height
+				if size > largest_size then
+					largest_size = size
+					largest = p
+				end
+			end
+
+			if largest and largest:pane_id() ~= pane:pane_id() then
+				largest:activate()
+			end
+		end),
+	},
+
 	--
 	-- Copy / Paste
 	--
