@@ -4,9 +4,6 @@ local wezterm = require("wezterm")
 -- Log warnings or generate errors if we define an invalid configuration option
 local config = wezterm.config_builder()
 
--- Install plugins
-local smart_splits = wezterm.plugin.require("https://github.com/mrjones2014/smart-splits.nvim")
-
 --
 -- General configuration options.
 --
@@ -92,124 +89,80 @@ config.leader = { key = "a", mods = "ALT", timeout_milliseconds = 2000 }
 -- General keymaps
 config.keys = {
 	--
-	-- Tab management
+	-- Enter key table modes
 	--
 
-	{ -- Spawn new tab
+	{ -- Enter tab management mode
 		key = "t",
 		mods = "LEADER",
-		action = wezterm.action.SpawnTab("CurrentPaneDomain"),
+		action = wezterm.action.ActivateKeyTable({
+			name = "tab_mode",
+			one_shot = true,
+		}),
 	},
 
+	{ -- Enter pane management mode
+		key = "p",
+		mods = "LEADER",
+		action = wezterm.action.ActivateKeyTable({
+			name = "pane_mode",
+			one_shot = true,
+		}),
+	},
+
+	--
+	-- Navigation
+	--
+
 	{ -- Focus previous tab
-		key = "Home",
+		key = "LeftArrow",
 		mods = "ALT",
 		action = wezterm.action.ActivateTabRelative(-1),
 	},
 
 	{ -- Focus next tab
-		key = "End",
+		key = "RightArrow",
 		mods = "ALT",
 		action = wezterm.action.ActivateTabRelative(1),
 	},
 
-  { -- Quit/close tab
-    key = "Q",
-    mods = "LEADER",
-    action = wezterm.action.CloseCurrentTab({ confirm = false }),
-  },
-
-	{ -- Rename current tab
-		key = ",",
-		mods = "LEADER",
-		action = wezterm.action_callback(function(window, pane)
-			local success, stdout, stderr = wezterm.run_child_process({
-				"dmenu",
-				"-fn",
-				"Fisa Code-10",
-				"-p",
-				"Tab name:",
-			})
-			if success and stdout then
-				local name = stdout:gsub("\n", "")
-				if name ~= "" then
-					window:active_tab():set_title(name)
-				end
-			end
-		end),
-	},
-
-	--
-	-- Pane management
-	--
-
-	{ -- Split pane vertically (bottom, 30%)
-		key = "s",
-		mods = "LEADER",
-		action = wezterm.action.SplitPane({
-			direction = "Down",
-			size = { Percent = 30 },
-		}),
-	},
-
-	{ -- Split pane horizontally (left, 28%)
-		key = "v",
-		mods = "LEADER",
-		action = wezterm.action.SplitPane({
-			direction = "Left",
-			size = { Percent = 28 },
-		}),
-	},
-
 	{ -- Focus previous pane
-		key = "PageUp",
+		key = "UpArrow",
 		mods = "ALT",
 		action = wezterm.action.ActivatePaneDirection("Prev"),
 	},
 
 	{ -- Focus next pane
-		key = "PageDown",
+		key = "DownArrow",
 		mods = "ALT",
 		action = wezterm.action.ActivatePaneDirection("Next"),
 	},
 
 	{ -- Rotate panes counter-clockwise
 		key = "PageUp",
-		mods = "ALT|CTRL",
+		mods = "ALT",
 		action = wezterm.action.RotatePanes("CounterClockwise"),
 	},
 
 	{ -- Rotate panes clockwise
 		key = "PageDown",
-		mods = "ALT|CTRL",
+		mods = "ALT",
 		action = wezterm.action.RotatePanes("Clockwise"),
-	},
-
-  { -- Maximize/zoom pane
-    key = "m",
-    mods = "LEADER",
-    action = wezterm.action.TogglePaneZoomState,
-  },
-
-	{ -- Quit/close pane
-		key = "q",
-		mods = "LEADER",
-		action = wezterm.action.CloseCurrentPane({ confirm = false }),
 	},
 
 	--
 	-- Copy / Paste
 	--
 
-	{ -- Activate vi copy mode
-		key = "x",
+	{ -- Enter copy mode
+		key = "Escape",
 		mods = "LEADER",
 		action = wezterm.action.ActivateCopyMode,
 	},
 
 	{ -- Paste from clipboard
-		key = "p",
-		mods = "LEADER",
+		key = "v",
+		mods = "CTRL|SHIFT",
 		action = wezterm.action.PasteFrom("Clipboard"),
 	},
 
@@ -224,6 +177,68 @@ config.keys = {
 	},
 }
 
+--
+-- Key table definitions for modal keybinding namespaces
+--
+
+config.key_tables = {
+	-- Tab management mode (LEADER + t)
+	tab_mode = {
+		{ -- Create new tab
+			key = "n",
+			action = wezterm.action.SpawnTab("CurrentPaneDomain"),
+		},
+		{ -- Close current tab
+			key = "q",
+			action = wezterm.action.CloseCurrentTab({ confirm = false }),
+		},
+		{ -- Rename current tab
+			key = "r",
+			action = wezterm.action_callback(function(window, pane)
+				local success, stdout, stderr = wezterm.run_child_process({
+					"dmenu",
+					"-fn",
+					"Fisa Code-10",
+					"-p",
+					"Tab name:",
+				})
+				if success and stdout then
+					local name = stdout:gsub("\n", "")
+					if name ~= "" then
+						window:active_tab():set_title(name)
+					end
+				end
+			end),
+		},
+	},
+
+	-- Pane management mode (LEADER + p)
+	pane_mode = {
+		{ -- Split pane vertically (bottom, 30%)
+			key = "s",
+			action = wezterm.action.SplitPane({
+				direction = "Down",
+				size = { Percent = 30 },
+			}),
+		},
+		{ -- Split pane horizontally (left, 28%)
+			key = "v",
+			action = wezterm.action.SplitPane({
+				direction = "Left",
+				size = { Percent = 28 },
+			}),
+		},
+		{ -- Close current pane
+			key = "q",
+			action = wezterm.action.CloseCurrentPane({ confirm = false }),
+		},
+		{ -- Maximize/zoom pane
+			key = "m",
+			action = wezterm.action.TogglePaneZoomState,
+		},
+	},
+}
+
 -- Jump to specific tabs by number (ALT + 1-9)
 for i = 1, 9 do
 	table.insert(config.keys, {
@@ -232,17 +247,5 @@ for i = 1, 9 do
 		action = wezterm.action.ActivateTab(i - 1),
 	})
 end
-
---
--- Enable neovim integration
---
-
-smart_splits.apply_to_config(config, {
-	direction_keys = { "LeftArrow", "DownArrow", "UpArrow", "RightArrow" },
-	modifiers = {
-		move = "ALT",
-		resize = "ALT|CTRL",
-	},
-})
 
 return config
