@@ -30,21 +30,20 @@
 
     # Install plugins
     plugins = [
-      {
+      { # vi(vim) mode for ZSH
+        name = "zsh-vi-mode";
+        src = "${pkgs.zsh-vi-mode}/share/zsh-vi-mode";
+      }
+
+      { # replace zsh's completion with fzf
         name = "fzf-tab";
-        src = pkgs.fetchFromGitHub {
-          owner = "Aloxaf";
-          repo = "fzf-tab";
-          rev = "5a81e13792a1eed4a03d2083771ee6e5b616b9ab";
-          sha256 = "dPe5CLCAuuuLGRdRCt/nNruxMrP9f/oddRxERkgm1FE=";
-        };
+        src = "${pkgs.zsh-fzf-tab}/share/fzf-tab";
       }
     ];
 
     # Extra commands that should be added to '.zshrc'
     initContent = ''
       eval "$(direnv hook zsh)"
-      source ${pkgs.zsh-vi-mode}/share/zsh-vi-mode/zsh-vi-mode.plugin.zsh
       bindkey "^[[1;5C" forward-word
       bindkey "^[[1;5D" backward-word
       export PATH
