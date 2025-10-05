@@ -813,11 +813,11 @@
         "nixvim": "nixvim_2"
       },
       "locked": {
-        "lastModified": 1759139016,
-        "narHash": "sha256-KGIh9sZn4nzUL/tisAY/L25/tV9P9T9JFQCAsPFqCMk=",
+        "lastModified": 1759480992,
+        "narHash": "sha256-Dmoyou7/ksb1+5tnzKzc0ebZZNu1mFIHj4wFig0xL6s=",
         "ref": "refs/heads/master",
-        "rev": "e9e5bb07fb8514444f7da0b14cfadf22743a186a",
-        "revCount": 106,
+        "rev": "ac16609e1f3f3cfcab660b476fdb10b46eeb15f4",
+        "revCount": 108,
         "type": "git",
         "url": "https://git.sajenim.dev/jasmine/nixvim-config.git"
       },
@@ -1156,11 +1156,11 @@
         "nixpkgs": "nixpkgs_11"
       },
       "locked": {
-        "lastModified": 1756741389,
-        "narHash": "sha256-3evhLo2SkA6ZfqSZpupjirgPb0YMAXk97UHvCS5RECU=",
+        "lastModified": 1759632947,
+        "narHash": "sha256-FWt4bglCX/xa6QDBjSm+7iSYSK54gae2uXEyI97CyIo=",
         "ref": "refs/heads/master",
-        "rev": "3063b4e06a6fb8ec286cfe15e89be88c5f2e5e89",
-        "revCount": 42,
+        "rev": "22abfee37ec1f24fcd9974e41f6468785188a860",
+        "revCount": 48,
         "type": "git",
         "url": "https://git.sajenim.dev/jasmine/xmonad-config.git"
       },
