@@ -1,37 +1,48 @@
 {pkgs, ...}: {
   environment = {
+    # Default shell for system scripts
     binsh = "${pkgs.bash}/bin/bash";
+
+    # Available shells for users
     shells = with pkgs; [zsh];
+
     systemPackages = with pkgs; [
-      # Ensure home-manager is on all systems
+      # System Management
       home-manager
 
-      # Useful system utilities
-      tree
-      bc
-      fd
+      # Archive & Compression
+      p7zip unzip
+
+      # Development Tools
+      git jq
+
+      # Editors
       vim
-      ranger
+
+      # File Management
+      fd ranger tree
+
+      # Graphics & Screenshots
+      feh scrot
+
+      # Networking
+      curl nmap sshfs wget
+
+      # System Monitoring
       htop
-      scrot
-      jq
-      git
-      nmap
-      xclip
+
+      # System Utilities
+      bc xclip
+
+      # Text Processing
       ripgrep
-      sshfs
-      feh
-      curl
-      wget
-      unzip
-      p7zip
     ];
 
     # List of directories to be symlinked to /run/current-system/sw
     pathsToLink = ["/share/zsh"];
   };
 
-  # System Fonts
+  # System-wide font packages
   fonts.packages = with pkgs; [
     lmodern
   ];
