@@ -9,16 +9,16 @@ This is a NixOS and Home Manager configuration using flakes architecture, managi
 ## Common Development Commands
 
 ### System Management
-- `just build <hostname>` - Build system configuration without switching
-- `just switch <hostname>` - Build and switch to new system configuration (requires sudo)
+- `just build <hostname>` - Build system and home-manager configuration without switching
+- `just switch <hostname>` - Build and switch to new system and home-manager configuration (requires sudo)
 - `just deploy <hostname>` - Deploy configuration to remote host
+
+**Note**: Home Manager is configured as a NixOS module, so `just build/switch` commands handle both system and user configurations together.
 
 ### Nix Operations
 - `nix build` - Build packages defined in flake
 - `nix fmt` - Format Nix files using alejandra formatter
 - `nix flake update` - Update all flake inputs
-- `nixos-rebuild build --flake .#<hostname>` - Build specific host configuration
-- `home-manager switch --flake .#sajenim@<hostname>` - Switch Home Manager configuration
 
 ### Development Environment
 - `nix develop` - Enter development shell with `just` available

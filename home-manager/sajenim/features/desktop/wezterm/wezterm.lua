@@ -138,18 +138,6 @@ config.keys = {
 		action = wezterm.action.ActivatePaneDirection("Next"),
 	},
 
-	{ -- Rotate panes counter-clockwise
-		key = "PageUp",
-		mods = "ALT",
-		action = wezterm.action.RotatePanes("CounterClockwise"),
-	},
-
-	{ -- Rotate panes clockwise
-		key = "PageDown",
-		mods = "ALT",
-		action = wezterm.action.RotatePanes("Clockwise"),
-	},
-
 	{ -- Focus largest (master) pane
 		key = "Delete",
 		mods = "ALT",
