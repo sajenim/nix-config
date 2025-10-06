@@ -9,6 +9,7 @@
     ./mpd
     ./murmur
     ./opengist
+    ./snapper
     ./traefik
   ];
 }
