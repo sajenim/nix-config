@@ -1,7 +1,9 @@
-{config, ...}: {
+{config, ...}: let
+  hostname = config.networking.hostName;
+in {
   services.forgejo = {
     enable = true;
-    stateDir = "/var/lib/forgejo";
+    stateDir = "/srv/forgejo";
     settings = {
       server = {
         DOMAIN = "git.sajenim.dev";
@@ -32,13 +34,12 @@
     ];
   };
 
-  environment.persistence."/persist" = {
-    directories = [
-      {
-        directory = "/var/lib/forgejo";
-        user = "forgejo";
-        group = "forgejo";
-      }
+  fileSystems."/srv/forgejo" = {
+    device = "/dev/disk/by-label/${hostname}";
+    fsType = "btrfs";
+    options = [
+      "subvol=srv-forgejo"
+      "compress=zstd"
     ];
   };
 }

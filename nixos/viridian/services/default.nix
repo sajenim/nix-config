@@ -4,7 +4,6 @@
     ./crowdsec
     ./forgejo
     ./inspircd
-    ./jupyterhub
     ./lighttpd
     ./minecraft
     ./mpd

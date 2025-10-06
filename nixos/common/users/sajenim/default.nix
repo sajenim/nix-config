@@ -4,7 +4,9 @@
   pkgs,
   config,
   ...
-}: {
+}: let
+  hostname = config.networking.hostName;
+in {
   imports = [
     inputs.home-manager.nixosModules.home-manager
   ];
@@ -29,8 +31,8 @@
   };
 
   fileSystems."/home/sajenim" = {
-    device = "/dev/disk/by-label/data";
+    device = "/dev/disk/by-label/${hostname}";
     fsType = "btrfs";
-    options = ["subvol=sajenim" "compress=zstd"];
+    options = ["subvol=hm-sajenim" "compress=zstd"];
   };
 }

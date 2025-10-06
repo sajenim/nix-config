@@ -52,17 +52,6 @@
     fsType = "vfat";
   };
 
-  fileSystems."/srv/multimedia" = {
-    device = "/dev/disk/by-label/multimedia";
-    fsType = "ext4";
-  };
-
-  fileSystems."/srv/multimedia/containers" = {
-    device = "/dev/disk/by-label/data";
-    fsType = "btrfs";
-    options = ["subvol=containers" "compress=zstd"];
-  };
-
   swapDevices = [
     {
       device = "/swap/swapfile";

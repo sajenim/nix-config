@@ -5,6 +5,7 @@
   config,
   ...
 }: let
+  hostname = config.networking.hostName;
   modpack = pkgs.fetchPackwizModpack rec {
     version = "9083262";
     url = "https://raw.githubusercontent.com/sajenim/minecraft-modpack/${version}/pack.toml";
@@ -71,9 +72,6 @@ in {
       };
     };
 
-    # Each server will be under a subdirectory named after the server name.
-    dataDir = "/var/lib/minecraft";
-
     # Open firewall for all servers.
     openFirewall = true;
     
@@ -106,14 +104,12 @@ in {
     };
   };
 
-  # Enable persistence for the data directory.
-  environment.persistence."/persist" = {
-    directories = [
-      {
-        directory = "/var/lib/minecraft";
-        user = "minecraft";
-        group = "minecraft";
-      }
+  fileSystems."/srv/minecraft" = {
+    device = "/dev/disk/by-label/${hostname}";
+    fsType = "btrfs";
+    options = [
+      "subvol=srv-minecraft"
+      "compress=zstd"
     ];
   };
 }

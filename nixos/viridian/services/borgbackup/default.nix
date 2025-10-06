@@ -6,14 +6,13 @@
   services.borgbackup.jobs."borgbase" = {
     paths = [
       # Websites
-      "/srv/www/sajenim.dev"
+      "/srv/lighttpd/sajenim.dev"
       # Services
       "/var/lib/crowdsec"
       "/var/lib/forgejo"
-      "/var/lib/jupyterhub"
-      "/var/lib/minecraft"
       "/var/lib/opengist"
       "/var/lib/traefik"
+      "/srv/minecraft"
       # Multimedia
       "/srv/multimedia/containers/jellyfin"
       "/srv/multimedia/containers/lidarr"

@@ -1,8 +1,10 @@
-{config, ...}: {
+{config, ...}: let
+  hostname = config.networking.hostName;
+in {
   services.lighttpd = {
     enable = true;
     port = 5624;
-    document-root = "/srv/www/sajenim.dev";
+    document-root = "/srv/lighttpd/sajenim.dev";
   };
 
   services.traefik.dynamicConfigOptions.http.routers = {
@@ -21,13 +23,12 @@
     ];
   };
 
-  environment.persistence."/persist" = {
-    directories = [
-      {
-        directory = "/srv/www";
-        user = "lighttpd";
-        group = "lighttpd";
-      }
+  fileSystems."/srv/lighttpd" = {
+    device = "/dev/disk/by-label/${hostname}";
+    fsType = "btrfs";
+    options = [
+      "subvol=srv-lighttpd"
+      "compress=zstd"
     ];
   };
 }

@@ -1,4 +1,5 @@
-{...}: let
+{config, ...}: let
+  hostname = config.networking.hostName;
   port = "6157";
 in {
   # OpenGist service configuration
@@ -9,7 +10,7 @@ in {
         "${port}:${port}"
       ];
       volumes = [
-        "/var/lib/opengist:/opengist"
+        "/srv/opengist:/opengist"
       ];
       # Environment variables for OpenGist
       environment = {
@@ -43,20 +44,18 @@ in {
     };
   };
 
-  # Persist data for OpenGist
-  environment.persistence."/persist" = {
-    directories = [
-      {
-        directory = "/var/lib/opengist";
-        user = "sajenim";
-        group = "users";
-      }
-    ];
-  };
-
   # Activation script to create symlinks for custom assets
   system.activationScripts.opengist-symlink = ''
-    cp ${toString ./assets/pikachu.png} /var/lib/opengist/custom/pikachu.png
-    cp ${toString ./assets/pokeball.png} /var/lib/opengist/custom/pokeball.png
+    cp ${toString ./assets/pikachu.png} /srv/opengist/custom/pikachu.png
+    cp ${toString ./assets/pokeball.png} /srv/opengist/custom/pokeball.png
   '';
+
+  fileSystems."/srv/opengist" = {
+    device = "/dev/disk/by-label/${hostname}";
+    fsType = "btrfs";
+    options = [
+      "subvol=srv-opengist"
+      "compress=zstd"
+    ];
+  };
 }
