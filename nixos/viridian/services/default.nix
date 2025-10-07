@@ -10,6 +10,7 @@
     ./murmur
     ./opengist
     ./snapper
+    ./ssh
     ./traefik
   ];
 }

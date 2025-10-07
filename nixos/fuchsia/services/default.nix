@@ -7,6 +7,7 @@
     ./pipewire
     ./printing
     ./snapper
+    ./ssh
     ./udev
     ./xserver
   ];
