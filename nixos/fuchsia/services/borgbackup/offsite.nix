@@ -19,26 +19,25 @@
 
     # Create staging snapshots before backup (independent from onsite)
     preHook = ''
-      # Create read-only staging snapshots for each service
-      for subvol in containers forgejo lighttpd minecraft opengist; do
-        # Map config names to actual subvolume paths
-        case "$subvol" in
-          containers) src="/srv/multimedia/containers" ;;
-          *) src="/srv/$subvol" ;;
-        esac
-
-        ${pkgs.btrfs-progs}/bin/btrfs subvolume snapshot -r \
-          "$src" "/.staging-offsite/$subvol"
-      done
+      # Create read-only staging snapshots for home directory
+      ${pkgs.btrfs-progs}/bin/btrfs subvolume snapshot -r \
+        "/home/sajenim" "/.staging-offsite/home"
     '';
 
-    # Backup staging snapshots and explicit persistent files
+    # Backup explicit home directories and persistent files
     paths = [
-      "/.staging-offsite/containers"
-      "/.staging-offsite/forgejo"
-      "/.staging-offsite/lighttpd"
-      "/.staging-offsite/minecraft"
-      "/.staging-offsite/opengist"
+      # Home directories (valuable user data only)
+      "/.staging-offsite/home/Documents"
+      "/.staging-offsite/home/Pictures"
+      "/.staging-offsite/home/Videos"
+      "/.staging-offsite/home/Music"
+      "/.staging-offsite/home/Downloads"
+      "/.staging-offsite/home/Academics"
+      "/.staging-offsite/home/Notes"
+
+      # Dotfiles (critical user configuration)
+      "/.staging-offsite/home/.ssh"
+      "/.staging-offsite/home/.gnupg"
 
       # Files from persist.nix (restore to /persist)
       "/etc/machine-id"
@@ -56,14 +55,12 @@
 
     # Remove staging snapshots after backup completes
     postHook = ''
-      for subvol in containers forgejo lighttpd minecraft opengist; do
-        ${pkgs.btrfs-progs}/bin/btrfs subvolume delete \
-          "/.staging-offsite/$subvol"
-      done
+      ${pkgs.btrfs-progs}/bin/btrfs subvolume delete \
+        "/.staging-offsite/home"
     '';
 
     # Remote repository configuration
-    repo = "r7ag7x1w@r7ag7x1w.repo.borgbase.com:repo";
+    repo = "li9kg944@li9kg944.repo.borgbase.com:repo";
 
     encryption = {
       mode = "repokey-blake2";
