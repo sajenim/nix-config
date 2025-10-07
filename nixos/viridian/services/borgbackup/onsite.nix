@@ -15,7 +15,15 @@ in {
     ];
   };
 
+  # Create staging directory before borg service starts
+  systemd.tmpfiles.rules = [
+    "d /.staging-onsite 0755 root root -"
+  ];
+
   services.borgbackup.jobs."onsite" = {
+    # Allow writing to staging directory
+    readWritePaths = [ "/.staging-onsite" ];
+
     # Create staging snapshots before backup (independent from offsite)
     preHook = ''
       # Create read-only staging snapshots for each service

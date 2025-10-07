@@ -8,7 +8,15 @@
     rekeyFile = ./passphrase.age;
   };
 
+  # Create staging directory before borg service starts
+  systemd.tmpfiles.rules = [
+    "d /.staging-offsite 0755 root root -"
+  ];
+
   services.borgbackup.jobs."offsite" = {
+    # Allow writing to staging directory
+    readWritePaths = [ "/.staging-offsite" ];
+
     # Create staging snapshots before backup (independent from onsite)
     preHook = ''
       # Create read-only staging snapshots for each service

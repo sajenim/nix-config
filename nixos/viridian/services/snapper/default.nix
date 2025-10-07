@@ -1,17 +1,6 @@
-{config, ...}: let
-  hostname = config.networking.hostName;
-in {
-  # Mount snapshots subvolume at /.snapshots for snapshot storage
-  fileSystems."/.snapshots" = {
-    device = "/dev/disk/by-label/${hostname}";
-    fsType = "btrfs";
-    options = [
-      "subvol=snapshots"
-      "compress=zstd"
-    ];
-  };
-
+{...}: {
   # Configure snapper for automated snapshots
+  # Snapshots stored in nested .snapshots subvolumes within each service
   services.snapper = {
     # Enable snapper globally
     configs = {
