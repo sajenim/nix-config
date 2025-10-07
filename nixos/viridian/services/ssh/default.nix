@@ -4,14 +4,14 @@
     "${inputs.self}/nixos/fuchsia/ssh_host_ed25519_key.pub"
   );
 in {
-  # Trust fuchsia's host keys for SSH connections
+  # Trust fuchsia's host keys for SSH connections (system-level, uses FQDN)
   programs.ssh.knownHosts = {
     "fuchsia-ed25519" = {
-      hostNames = ["fuchsia"];
+      hostNames = ["fuchsia.home.arpa"];
       publicKeyFile = "${inputs.self}/nixos/fuchsia/ssh_host_ed25519_key.pub";
     };
     "fuchsia-rsa" = {
-      hostNames = ["fuchsia"];
+      hostNames = ["fuchsia.home.arpa"];
       publicKeyFile = "${inputs.self}/nixos/fuchsia/ssh_host_rsa_key.pub";
     };
   };

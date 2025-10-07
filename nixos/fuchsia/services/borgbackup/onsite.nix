@@ -58,7 +58,7 @@ in {
     '';
 
     # Onsite repository configuration (backup to viridian over SSH)
-    repo = "ssh://viridian/srv/borg-repo/${hostname}";
+    repo = "ssh://viridian.home.arpa/srv/borg-repo/${hostname}";
 
     # No encryption for onsite backups (physical security assumed)
     encryption.mode = "none";
