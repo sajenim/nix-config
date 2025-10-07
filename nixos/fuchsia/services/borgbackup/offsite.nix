@@ -78,9 +78,4 @@
       monthly = 12;   # Keep 12 monthly backups (1 year)
     };
   };
-
-  # SSH host keys for borgbase.com
-  programs.ssh.knownHostsFiles = [
-    ./borgbase_hosts
-  ];
 }

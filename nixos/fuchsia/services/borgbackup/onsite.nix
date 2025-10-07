@@ -76,9 +76,4 @@ in {
       monthly = 12;
     };
   };
-
-  # SSH host keys for viridian
-  programs.ssh.knownHostsFiles = [
-    ./viridian_hosts
-  ];
 }
