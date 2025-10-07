@@ -1,6 +1,7 @@
 {
   config,
   pkgs,
+  inputs,
   ...
 }: {
   # Encrypted passphrase for offsite borgbackup repository
@@ -32,13 +33,26 @@
       done
     '';
 
-    # Backup all staging snapshots
+    # Backup staging snapshots and explicit persistent files
     paths = [
       "/.staging-offsite/containers"
       "/.staging-offsite/forgejo"
       "/.staging-offsite/lighttpd"
       "/.staging-offsite/minecraft"
       "/.staging-offsite/opengist"
+
+      # Files from persist.nix (restore to /persist)
+      "/etc/machine-id"
+      "/etc/ssh/ssh_host_rsa_key"
+      "/etc/ssh/ssh_host_rsa_key.pub"
+      "/etc/ssh/ssh_host_ed25519_key"
+      "/etc/ssh/ssh_host_ed25519_key.pub"
+
+      # Directories from persist.nix (restore to /persist)
+      "/var/lib/bluetooth"
+      "/var/lib/nixos"
+      "/var/lib/private"
+      "/etc/NetworkManager/system-connections"
     ];
 
     # Remove staging snapshots after backup completes
