@@ -10,35 +10,35 @@
 
   # Create staging directory before borg service starts
   systemd.tmpfiles.rules = [
-    "d /.staging-offsite 0755 root root -"
+    "d /subvolumes-offsite 0755 root root -"
   ];
 
   services.borgbackup.jobs."offsite" = {
     # Allow writing to staging directory
-    readWritePaths = [ "/.staging-offsite" ];
+    readWritePaths = [ "/subvolumes-offsite" ];
 
     # Create staging snapshots before backup (independent from onsite)
     preHook = ''
       # Create read-only staging snapshots for home directory
       ${pkgs.btrfs-progs}/bin/btrfs subvolume snapshot -r \
-        "/home/sajenim" "/.staging-offsite/home"
+        "/home/sajenim" "/subvolumes-offsite/hm-sajenim"
     '';
 
     # Backup explicit home directories and persistent files
     paths = [
       # Home directories (valuable user data only)
-      "/.staging-offsite/home/Documents"
-      "/.staging-offsite/home/Pictures"
-      "/.staging-offsite/home/Videos"
-      "/.staging-offsite/home/Music"
-      "/.staging-offsite/home/Downloads"
-      "/.staging-offsite/home/Academics"
-      "/.staging-offsite/home/Notes"
-      "/.staging-offsite/home/Library"
+      "/subvolumes-offsite/hm-sajenim/Documents"
+      "/subvolumes-offsite/hm-sajenim/Pictures"
+      "/subvolumes-offsite/hm-sajenim/Videos"
+      "/subvolumes-offsite/hm-sajenim/Music"
+      "/subvolumes-offsite/hm-sajenim/Downloads"
+      "/subvolumes-offsite/hm-sajenim/Academics"
+      "/subvolumes-offsite/hm-sajenim/Notes"
+      "/subvolumes-offsite/hm-sajenim/Library"
 
       # Dotfiles (critical user configuration)
-      "/.staging-offsite/home/.ssh"
-      "/.staging-offsite/home/.gnupg"
+      "/subvolumes-offsite/hm-sajenim/.ssh"
+      "/subvolumes-offsite/hm-sajenim/.gnupg"
 
       # Files from persist.nix (restore to /persist)
       "/etc/machine-id"
@@ -57,7 +57,7 @@
     # Remove staging snapshots after backup completes
     postHook = ''
       ${pkgs.btrfs-progs}/bin/btrfs subvolume delete \
-        "/.staging-offsite/home"
+        "/subvolumes-offsite/hm-sajenim"
     '';
 
     # Remote repository configuration

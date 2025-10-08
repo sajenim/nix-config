@@ -8,35 +8,35 @@ in {
 
   # Create staging directory before borg service starts
   systemd.tmpfiles.rules = [
-    "d /.staging-onsite 0755 root root -"
+    "d /subvolumes-onsite 0755 root root -"
   ];
 
   services.borgbackup.jobs."onsite" = {
     # Allow writing to staging directory
-    readWritePaths = [ "/.staging-onsite" ];
+    readWritePaths = [ "/subvolumes-onsite" ];
 
     # Create staging snapshots before backup (independent from offsite)
     preHook = ''
       # Create read-only staging snapshots for home directory
       ${pkgs.btrfs-progs}/bin/btrfs subvolume snapshot -r \
-        "/home/sajenim" "/.staging-onsite/home"
+        "/home/sajenim" "/subvolumes-onsite/hm-sajenim"
     '';
 
     # Backup explicit home directories and persistent files
     paths = [
       # Home directories (valuable user data only)
-      "/.staging-onsite/home/Documents"
-      "/.staging-onsite/home/Pictures"
-      "/.staging-onsite/home/Videos"
-      "/.staging-onsite/home/Music"
-      "/.staging-onsite/home/Downloads"
-      "/.staging-onsite/home/Academics"
-      "/.staging-onsite/home/Notes"
-      "/.staging-onsite/home/Library"
+      "/subvolumes-onsite/hm-sajenim/Documents"
+      "/subvolumes-onsite/hm-sajenim/Pictures"
+      "/subvolumes-onsite/hm-sajenim/Videos"
+      "/subvolumes-onsite/hm-sajenim/Music"
+      "/subvolumes-onsite/hm-sajenim/Downloads"
+      "/subvolumes-onsite/hm-sajenim/Academics"
+      "/subvolumes-onsite/hm-sajenim/Notes"
+      "/subvolumes-onsite/hm-sajenim/Library"
 
       # Dotfiles (critical user configuration)
-      "/.staging-onsite/home/.ssh"
-      "/.staging-onsite/home/.gnupg"
+      "/subvolumes-onsite/hm-sajenim/.ssh"
+      "/subvolumes-onsite/hm-sajenim/.gnupg"
 
       # Files from persist.nix (restore to /persist)
       "/etc/machine-id"
@@ -55,7 +55,7 @@ in {
     # Remove staging snapshots after backup completes
     postHook = ''
       ${pkgs.btrfs-progs}/bin/btrfs subvolume delete \
-        "/.staging-onsite/home"
+        "/subvolumes-onsite/hm-sajenim"
     '';
 
     # Onsite repository configuration (backup to viridian over SSH)

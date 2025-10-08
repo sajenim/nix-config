@@ -17,35 +17,35 @@ in {
 
   # Create staging directory before borg service starts
   systemd.tmpfiles.rules = [
-    "d /.staging-onsite 0755 root root -"
+    "d /subvolumes-onsite 0755 root root -"
   ];
 
   services.borgbackup.jobs."onsite" = {
     # Allow writing to staging directory
-    readWritePaths = [ "/.staging-onsite" ];
+    readWritePaths = [ "/subvolumes-onsite" ];
 
     # Create staging snapshots before backup (independent from offsite)
     preHook = ''
       # Create read-only staging snapshots for each service
-      for subvol in containers forgejo lighttpd minecraft opengist; do
-        # Map config names to actual subvolume paths
+      for subvol in srv-containers srv-forgejo srv-lighttpd srv-minecraft srv-opengist; do
+        # Map subvolume names to actual paths
         case "$subvol" in
-          containers) src="/srv/multimedia/containers" ;;
-          *) src="/srv/$subvol" ;;
+          srv-containers) src="/srv/multimedia/containers" ;;
+          srv-*) src="/srv/''${subvol#srv-}" ;;
         esac
 
         ${pkgs.btrfs-progs}/bin/btrfs subvolume snapshot -r \
-          "$src" "/.staging-onsite/$subvol"
+          "$src" "/subvolumes-onsite/$subvol"
       done
     '';
 
     # Backup staging snapshots and explicit persistent files
     paths = [
-      "/.staging-onsite/containers"
-      "/.staging-onsite/forgejo"
-      "/.staging-onsite/lighttpd"
-      "/.staging-onsite/minecraft"
-      "/.staging-onsite/opengist"
+      "/subvolumes-onsite/srv-containers"
+      "/subvolumes-onsite/srv-forgejo"
+      "/subvolumes-onsite/srv-lighttpd"
+      "/subvolumes-onsite/srv-minecraft"
+      "/subvolumes-onsite/srv-opengist"
 
       # Files from persist.nix (restore to /persist)
       "/etc/machine-id"
@@ -63,9 +63,9 @@ in {
 
     # Remove staging snapshots after backup completes
     postHook = ''
-      for subvol in containers forgejo lighttpd minecraft opengist; do
+      for subvol in srv-containers srv-forgejo srv-lighttpd srv-minecraft srv-opengist; do
         ${pkgs.btrfs-progs}/bin/btrfs subvolume delete \
-          "/.staging-onsite/$subvol"
+          "/subvolumes-onsite/$subvol"
       done
     '';
 
