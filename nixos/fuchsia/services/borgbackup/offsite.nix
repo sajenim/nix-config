@@ -40,18 +40,18 @@
       "/subvolumes-offsite/hm-sajenim/.ssh"
       "/subvolumes-offsite/hm-sajenim/.gnupg"
 
-      # Files from persist.nix (restore to /persist)
-      "/etc/machine-id"
-      "/etc/ssh/ssh_host_rsa_key"
-      "/etc/ssh/ssh_host_rsa_key.pub"
-      "/etc/ssh/ssh_host_ed25519_key"
-      "/etc/ssh/ssh_host_ed25519_key.pub"
+      # Persistent files (actual storage location)
+      "/persist/etc/machine-id"
+      "/persist/etc/ssh/ssh_host_rsa_key"
+      "/persist/etc/ssh/ssh_host_rsa_key.pub"
+      "/persist/etc/ssh/ssh_host_ed25519_key"
+      "/persist/etc/ssh/ssh_host_ed25519_key.pub"
 
-      # Directories from persist.nix (restore to /persist)
-      "/var/lib/bluetooth"
-      "/var/lib/nixos"
-      "/var/lib/private"
-      "/etc/NetworkManager/system-connections"
+      # Persistent directories (actual storage location)
+      "/persist/var/lib/bluetooth"
+      "/persist/var/lib/nixos"
+      "/persist/var/lib/private"
+      "/persist/etc/NetworkManager/system-connections"
     ];
 
     # Remove staging snapshots after backup completes
