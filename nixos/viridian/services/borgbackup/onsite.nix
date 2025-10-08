@@ -17,35 +17,48 @@ in {
 
   # Create staging directory before borg service starts
   systemd.tmpfiles.rules = [
-    "d /subvolumes-onsite 0755 root root -"
+    "d /btrfs-subvolumes 0755 root root -"
   ];
 
   services.borgbackup.jobs."onsite" = {
     # Allow writing to staging directory
-    readWritePaths = [ "/subvolumes-onsite" ];
+    readWritePaths = [ "/btrfs-subvolumes" ];
 
-    # Create staging snapshots before backup (independent from offsite)
-    preHook = ''
-      # Create read-only staging snapshots for each service
-      for subvol in srv-containers srv-forgejo srv-lighttpd srv-minecraft srv-opengist; do
-        # Map subvolume names to actual paths
+    preHook = let
+      subvolumes = [
+        "srv-containers"
+        "srv-forgejo"
+        "srv-lighttpd"
+        "srv-minecraft"
+        "srv-opengist"
+      ];
+    in /* sh */ ''
+      # Clean up orphaned snapshots from failed runs (crash/power loss)
+      for subvol in ${toString subvolumes}; do
+        [ -d "/btrfs-subvolumes/$subvol" ] && \
+          ${pkgs.btrfs-progs}/bin/btrfs subvolume delete \
+            "/btrfs-subvolumes/$subvol" 2>/dev/null || true
+      done
+
+      # Create read-only BTRFS snapshots for backup
+      for subvol in ${toString subvolumes}; do
         case "$subvol" in
           srv-containers) src="/srv/multimedia/containers" ;;
           srv-*) src="/srv/''${subvol#srv-}" ;;
         esac
 
         ${pkgs.btrfs-progs}/bin/btrfs subvolume snapshot -r \
-          "$src" "/subvolumes-onsite/$subvol"
+          "$src" "/btrfs-subvolumes/$subvol"
       done
     '';
 
     # Backup staging snapshots and explicit persistent files
     paths = [
-      "/subvolumes-onsite/srv-containers"
-      "/subvolumes-onsite/srv-forgejo"
-      "/subvolumes-onsite/srv-lighttpd"
-      "/subvolumes-onsite/srv-minecraft"
-      "/subvolumes-onsite/srv-opengist"
+      "/btrfs-subvolumes/srv-containers"
+      "/btrfs-subvolumes/srv-forgejo"
+      "/btrfs-subvolumes/srv-lighttpd"
+      "/btrfs-subvolumes/srv-minecraft"
+      "/btrfs-subvolumes/srv-opengist"
 
       # Persistent files (actual storage location)
       "/persist/etc/machine-id"
@@ -61,11 +74,19 @@ in {
       "/persist/etc/NetworkManager/system-connections"
     ];
 
-    # Remove staging snapshots after backup completes
-    postHook = ''
-      for subvol in srv-containers srv-forgejo srv-lighttpd srv-minecraft srv-opengist; do
+    postHook = let
+      subvolumes = [
+        "srv-containers"
+        "srv-forgejo"
+        "srv-lighttpd"
+        "srv-minecraft"
+        "srv-opengist"
+      ];
+    in /* sh */ ''
+      # Clean up snapshots after successful backup
+      for subvol in ${toString subvolumes}; do
         ${pkgs.btrfs-progs}/bin/btrfs subvolume delete \
-          "/subvolumes-onsite/$subvol"
+          "/btrfs-subvolumes/$subvol"
       done
     '';
 

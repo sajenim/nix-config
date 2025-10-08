@@ -8,35 +8,39 @@ in {
 
   # Create staging directory before borg service starts
   systemd.tmpfiles.rules = [
-    "d /subvolumes-onsite 0755 root root -"
+    "d /btrfs-subvolumes 0755 root root -"
   ];
 
   services.borgbackup.jobs."onsite" = {
     # Allow writing to staging directory
-    readWritePaths = [ "/subvolumes-onsite" ];
+    readWritePaths = [ "/btrfs-subvolumes" ];
 
-    # Create staging snapshots before backup (independent from offsite)
-    preHook = ''
-      # Create read-only staging snapshots for home directory
+    preHook = /* sh */ ''
+      # Clean up orphaned snapshots from failed runs (crash/power loss)
+      [ -d "/btrfs-subvolumes/hm-sajenim" ] && \
+        ${pkgs.btrfs-progs}/bin/btrfs subvolume delete \
+          "/btrfs-subvolumes/hm-sajenim" 2>/dev/null || true
+
+      # Create read-only BTRFS snapshot for backup
       ${pkgs.btrfs-progs}/bin/btrfs subvolume snapshot -r \
-        "/home/sajenim" "/subvolumes-onsite/hm-sajenim"
+        "/home/sajenim" "/btrfs-subvolumes/hm-sajenim"
     '';
 
     # Backup explicit home directories and persistent files
     paths = [
       # Home directories (valuable user data only)
-      "/subvolumes-onsite/hm-sajenim/Documents"
-      "/subvolumes-onsite/hm-sajenim/Pictures"
-      "/subvolumes-onsite/hm-sajenim/Videos"
-      "/subvolumes-onsite/hm-sajenim/Music"
-      "/subvolumes-onsite/hm-sajenim/Downloads"
-      "/subvolumes-onsite/hm-sajenim/Academics"
-      "/subvolumes-onsite/hm-sajenim/Notes"
-      "/subvolumes-onsite/hm-sajenim/Library"
+      "/btrfs-subvolumes/hm-sajenim/Documents"
+      "/btrfs-subvolumes/hm-sajenim/Pictures"
+      "/btrfs-subvolumes/hm-sajenim/Videos"
+      "/btrfs-subvolumes/hm-sajenim/Music"
+      "/btrfs-subvolumes/hm-sajenim/Downloads"
+      "/btrfs-subvolumes/hm-sajenim/Academics"
+      "/btrfs-subvolumes/hm-sajenim/Notes"
+      "/btrfs-subvolumes/hm-sajenim/Library"
 
       # Dotfiles (critical user configuration)
-      "/subvolumes-onsite/hm-sajenim/.ssh"
-      "/subvolumes-onsite/hm-sajenim/.gnupg"
+      "/btrfs-subvolumes/hm-sajenim/.ssh"
+      "/btrfs-subvolumes/hm-sajenim/.gnupg"
 
       # Persistent files (actual storage location)
       "/persist/etc/machine-id"
@@ -52,10 +56,10 @@ in {
       "/persist/etc/NetworkManager/system-connections"
     ];
 
-    # Remove staging snapshots after backup completes
-    postHook = ''
+    postHook = /* sh */ ''
+      # Clean up snapshots after successful backup
       ${pkgs.btrfs-progs}/bin/btrfs subvolume delete \
-        "/subvolumes-onsite/hm-sajenim"
+        "/btrfs-subvolumes/hm-sajenim"
     '';
 
     # Onsite repository configuration (backup to viridian over SSH)
