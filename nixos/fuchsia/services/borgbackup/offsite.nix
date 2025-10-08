@@ -34,6 +34,7 @@
       "/.staging-offsite/home/Downloads"
       "/.staging-offsite/home/Academics"
       "/.staging-offsite/home/Notes"
+      "/.staging-offsite/home/Library"
 
       # Dotfiles (critical user configuration)
       "/.staging-offsite/home/.ssh"

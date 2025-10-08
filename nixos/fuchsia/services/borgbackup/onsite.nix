@@ -32,6 +32,7 @@ in {
       "/.staging-onsite/home/Downloads"
       "/.staging-onsite/home/Academics"
       "/.staging-onsite/home/Notes"
+      "/.staging-onsite/home/Library"
 
       # Dotfiles (critical user configuration)
       "/.staging-onsite/home/.ssh"
