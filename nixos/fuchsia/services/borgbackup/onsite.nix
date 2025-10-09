@@ -11,6 +11,13 @@ in {
     "d /btrfs-subvolumes 0755 root root -"
   ];
 
+  # Configure service to wait for completion before marking as active
+  systemd.services."borgbackup-job-onsite" = {
+    serviceConfig = {
+      Type = "oneshot";
+    };
+  };
+
   services.borgbackup.jobs."onsite" = {
     # Allow writing to staging directory
     readWritePaths = [ "/btrfs-subvolumes" ];
@@ -72,6 +79,9 @@ in {
 
     compression = "zstd,9";
     startAt = "hourly";
+
+    # Ensure backup runs on wake if system was asleep
+    persistentTimer = true;
 
     # Match snapper retention policy
     prune.keep = {

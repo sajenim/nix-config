@@ -15,7 +15,11 @@
 
   # Wait for onsite backup to complete before starting offsite
   systemd.services."borgbackup-job-offsite" = {
+    wants = ["borgbackup-job-onsite.service"];
     after = ["borgbackup-job-onsite.service"];
+    serviceConfig = {
+      Type = "oneshot";
+    };
   };
 
   services.borgbackup.jobs."offsite" = {
@@ -79,7 +83,7 @@
 
     environment.BORG_RSH = "ssh -i /etc/ssh/ssh_host_ed25519_key";
     compression = "zstd,9";
-    startAt = "*-*-* 00:15:00"; # Daily at 12:15 AM
+    startAt = "daily"; # Daily at midnight
 
     # Ensure backup runs on next boot if system was asleep
     persistentTimer = true;
