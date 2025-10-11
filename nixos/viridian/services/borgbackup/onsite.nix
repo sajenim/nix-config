@@ -22,6 +22,8 @@ in {
 
   # Configure service to wait for completion before marking as active
   systemd.services."borgbackup-job-onsite" = {
+    after = [ "network-online.target" ];
+    wants = [ "network-online.target" ];
     serviceConfig = {
       Type = "oneshot";
     };
