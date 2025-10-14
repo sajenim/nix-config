@@ -40,6 +40,9 @@
   # Copy our configuration files to home directory
   home.file = {
     ".ideavimrc".source = ./ideavimrc;
+
+    # Global claude configuration
     ".claude/settings.json".source = ./claude-settings.json;
+    ".claude/CLAUDE.md".source = ./CLAUDE.md;
   };
 }
