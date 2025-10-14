@@ -82,11 +82,9 @@
     };
 
     environment.BORG_RSH = "ssh -i /etc/ssh/ssh_host_ed25519_key";
-    compression = "zstd,9";
-    startAt = "daily"; # Daily at midnight
 
-    # Ensure backup runs on next boot if system was asleep
-    persistentTimer = true;
+    compression = "zstd,9";
+    startAt = "14:00"; # Daily at 2pm when system is reliably awake
 
     # Retention policy for daily remote backups
     prune.keep = {

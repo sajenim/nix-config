@@ -104,9 +104,6 @@
     compression = "zstd,9";
     startAt = "daily"; # Daily at midnight
 
-    # Ensure backup runs on next boot if system was asleep
-    persistentTimer = true;
-
     # Retention policy for daily remote backups
     prune.keep = {
       daily = 7;      # Keep 7 daily backups (1 week)

@@ -22,8 +22,6 @@ in {
 
   # Configure service to wait for completion before marking as active
   systemd.services."borgbackup-job-onsite" = {
-    after = [ "network-online.target" ];
-    wants = [ "network-online.target" ];
     serviceConfig = {
       Type = "oneshot";
     };
@@ -107,9 +105,6 @@ in {
 
     compression = "zstd,9";
     startAt = "hourly";
-
-    # Ensure backup runs on wake if system was asleep
-    persistentTimer = true;
 
     # Match snapper retention policy
     prune.keep = {
