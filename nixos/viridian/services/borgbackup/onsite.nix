@@ -103,6 +103,10 @@ in {
     # No encryption for local backups (physical security assumed)
     encryption.mode = "none";
 
+    environment = {
+      BORG_UNKNOWN_UNENCRYPTED_REPO_ACCESS_IS_OK = "yes";
+    };
+
     compression = "zstd,9";
     startAt = "hourly";
 

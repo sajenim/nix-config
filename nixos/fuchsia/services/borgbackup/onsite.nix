@@ -75,7 +75,10 @@ in {
     # No encryption for onsite backups (physical security assumed)
     encryption.mode = "none";
 
-    environment.BORG_RSH = "ssh -i /etc/ssh/ssh_host_ed25519_key";
+    environment = {
+      BORG_RSH = "ssh -i /etc/ssh/ssh_host_ed25519_key";
+      BORG_UNKNOWN_UNENCRYPTED_REPO_ACCESS_IS_OK = "yes";
+    };
 
     compression = "zstd,9";
     startAt = "hourly";

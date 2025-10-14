@@ -100,7 +100,10 @@
       passCommand = "cat ${config.age.secrets.borgbackup.path}";
     };
 
-    environment.BORG_RSH = "ssh -i /etc/ssh/ssh_host_ed25519_key";
+    environment = {
+      BORG_RSH = "ssh -i /etc/ssh/ssh_host_ed25519_key";
+    };
+
     compression = "zstd,9";
     startAt = "daily"; # Daily at midnight
 
