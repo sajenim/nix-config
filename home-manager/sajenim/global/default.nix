@@ -2,10 +2,6 @@
 # This module provides base user settings, nixpkgs configuration, and core imports
 # that are inherited across all hosts where this user is configured.
 {outputs, lib, ...}: {
-  imports = [
-    ./zsh.nix # Shell configuration and plugins
-  ];
-
   # Nixpkgs configuration - applies overlays and sets package acceptance policy
   nixpkgs = {
     # Apply custom overlays to extend/modify the package set

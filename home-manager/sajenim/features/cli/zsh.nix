@@ -1,4 +1,8 @@
 {pkgs, ...}: {
+  imports = [
+    ./starship.nix
+  ];
+
   home.packages = with pkgs; [
     fzf # command-line fuzzy finder
   ];
@@ -47,7 +51,6 @@
       bindkey "^[[1;5C" forward-word
       bindkey "^[[1;5D" backward-word
       export PATH
-      PROMPT='%F{blue}%n@%m %F{cyan}%~ %F{red}♥ %f';
     '';
   };
 }
