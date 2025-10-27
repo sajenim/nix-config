@@ -3,13 +3,13 @@
     enable = true;
     enableZshIntegration = true;
     settings = {
-      # Left prompt: username@hostname directory git ♥
-      format = "$username$hostname$directory$git_branch$git_status$character";
+      add_newline = false;
 
-      # Right prompt: language indicators
+      # Prompt layout
+      format = "$username$hostname$directory$git_branch$git_status$character";
       right_format = "$c$direnv$haskell$bun$python$rust";
 
-      # Blue username
+      # Always show username
       username = {
         style_user = "blue";
         style_root = "red";
@@ -17,14 +17,14 @@
         show_always = true;
       };
 
-      # Blue @hostname
+      # Show hostname even when not over SSH
       hostname = {
         ssh_only = false;
         format = "[@$hostname]($style) ";
         style = "blue";
       };
 
-      # Cyan directory
+      # Full path, no truncation
       directory = {
         style = "cyan";
         format = "[$path]($style) ";
@@ -32,12 +32,10 @@
         truncate_to_repo = false;
       };
 
-      # Git branch (purple, no bold)
-      git_branch = {
-        style = "purple";
-      };
+      # Git configuration
+      git_branch.style = "purple";
 
-      # Git status with semantic colors (no bold, no brackets)
+      # Semantic colors for git status indicators
       git_status = {
         format = "$conflicted$stashed$deleted$renamed$modified$staged$untracked$ahead_behind";
         conflicted = "[=$count](red) ";
@@ -52,19 +50,14 @@
         deleted = "[✘$count](red) ";
       };
 
-      # Heart prompt character (red in insert mode, blue in normal mode)
+      # Vi-mode aware prompt character
       character = {
         success_symbol = "[♥](red)";
         error_symbol = "[♥](red)";
         vicmd_symbol = "[♥](blue)";
       };
 
-      # Language modules for right prompt (only configure non-defaults)
-
-      # Enable direnv (disabled by default)
       direnv.disabled = false;
-
-      # C, Python, Haskell, Bun, Rust: use defaults
     };
   };
 }

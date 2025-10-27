@@ -37,8 +37,6 @@
   # Configure programs
   programs = {
     zsh.enable = true;
-    # Load and unload environment variables
-    direnv.enable = true;
   };
 
   # Manage linux containers

@@ -1,5 +1,6 @@
 {pkgs, ...}: {
   imports = [
+    ./direnv.nix
     ./starship.nix
   ];
 
@@ -47,7 +48,6 @@
 
     # Extra commands that should be added to '.zshrc'
     initContent = ''
-      eval "$(direnv hook zsh)"
       bindkey "^[[1;5C" forward-word
       bindkey "^[[1;5D" backward-word
       export PATH
