@@ -171,10 +171,13 @@ Services are organized by host in `nixos/<hostname>/services/`:
 - **Unfree packages**: Add to allowlist in `nixos/common/global/default.nix`
 
 ### Testing Changes
-1. Build configuration: `just build <hostname>`
-2. Check for evaluation errors: `nix flake check`
-3. Review changes before switching
-4. Switch: `just switch <hostname>` (local) or `just deploy <hostname>` (remote)
+1. **IMPORTANT**: Stage new files with git before building or checking
+   - Nix flakes only evaluate files tracked in git
+   - Run `git add <file>` for any new files before `nix flake check` or build
+2. Build configuration: `just build <hostname>`
+3. Check for evaluation errors: `nix flake check`
+4. Review changes before switching
+5. Switch: `just switch <hostname>` (local) or `just deploy <hostname>` (remote)
 
 ### Managing Secrets
 - Secrets are encrypted per-host and stored in
@@ -185,6 +188,23 @@ Services are organized by host in `nixos/<hostname>/services/`:
 - Host SSH keys at `/persist/etc/ssh/` are used for automatic decryption
 
 ## Important Conventions
+
+### Network IP Allocation
+This infrastructure uses the following IP range scheme to avoid conflicts:
+
+**Allocated Ranges:**
+- `192.168.50.0/24` - Home router/main LAN
+- `10.1.0.0/24` - Internet sharing from fuchsia (Ethernet to printer)
+- `10.2.0.0/24` - Reserved for future internet sharing from another host
+- `10.3.0.0/24` - Reserved for future internet sharing from another host
+- `10.39.179.0/24` - WireGuard VPN on Raspberry Pi
+- `172.17.0.0/16` - Docker default bridge network (viridian)
+
+**Conventions:**
+- Internet connection sharing uses `10.N.0.0/24` where N is 1, 2, 3, etc.
+- Gateway host is always `10.N.0.1`
+- DHCP pools typically use `10.N.0.2` through `10.N.0.10`
+- Keep VPN/tunnel ranges in the `10.30.0.0/16` and higher space
 
 ### Line Length
 Keep all Nix code to a maximum of 100 characters per line for consistency.

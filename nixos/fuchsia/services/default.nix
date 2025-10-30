@@ -3,6 +3,7 @@
     ./amdgpu-clocks
     ./borgbackup
     ./flatpak
+    ./internet-sharing
     ./libinput
     ./pipewire
     ./printing
