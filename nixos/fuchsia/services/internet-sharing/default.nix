@@ -42,11 +42,13 @@
       extraCommands = ''
         # NAT: masquerade traffic from Ethernet going to WiFi
         iptables -t nat -A POSTROUTING -o wlo1 -j MASQUERADE
-        # Allow forwarding from Ethernet to WiFi
+
+        # Allow forwarding from Ethernet to WiFi (printer -> internet)
         iptables -A FORWARD -i enp34s0 -o wlo1 -j ACCEPT
-        # Allow established connections back from WiFi to Ethernet
-        iptables -A FORWARD -i wlo1 -o enp34s0 -m state \
-          --state RELATED,ESTABLISHED -j ACCEPT
+
+        # Allow forwarding from WiFi to Ethernet (phone -> printer)
+        # This enables devices on 192.168.50.x to access the printer
+        iptables -A FORWARD -i wlo1 -o enp34s0 -j ACCEPT
       '';
     };
   };
