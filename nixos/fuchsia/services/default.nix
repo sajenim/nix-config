@@ -1,11 +1,11 @@
 {...}: {
   imports = [
     ./amdgpu-clocks
+    ./audio
     ./borgbackup
     ./flatpak
     ./internet-sharing
     ./libinput
-    ./pipewire
     ./printing
     ./snapper
     ./ssh

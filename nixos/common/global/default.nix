@@ -35,6 +35,12 @@
           # Services
           "minecraft-server"
         ];
+
+      # Allow specific packages with known CVEs when required by dependencies.
+      # Only add packages here when no secure alternative exists.
+      permittedInsecurePackages = [
+        "mbedtls-2.28.10" # required for orca-slicer
+      ];
     };
   };
 

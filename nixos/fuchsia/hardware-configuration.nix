@@ -29,6 +29,14 @@
     # The set of kernel modules to be loaded in the second stage of the boot process.
     kernelModules = ["i2c-dev" "i2c-piix4"];
 
+    # Hardware-specific kernel module workarounds
+    extraModprobeConfig = ''
+      # Disable Bluetooth Enhanced Retransmission Mode to fix connectivity issues
+      options bluetooth disable_ertm=1
+      # Disable WiFi power saving to prevent connection drops
+      options iwlwifi power_save=0
+    '';
+
     # Our boot loader configuration
     loader = {
       efi = {
@@ -47,6 +55,14 @@
     bluetooth = {
       enable = true;
       powerOnBoot = true;
+      settings = {
+        General = {
+          ControllerMode = "dual";
+          FastConnectable = true;
+          Experimental = true;
+          MultiProfile = "multiple";
+        };
+      };
     };
     graphics = {
       enable = true;

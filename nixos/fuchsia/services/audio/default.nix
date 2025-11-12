@@ -1,18 +1,19 @@
 { pkgs, ... }: {
-  # Realtime scheduler
+  # Realtime scheduler for low-latency audio
   security.rtkit.enable = true;
 
-  # Sound server
+  # PipeWire sound server
   services.pipewire = {
     enable = true;
 
-    # Enable components
+    # Enable ALSA, PulseAudio compatibility, and WirePlumber session manager
     alsa.enable = true;
     alsa.support32Bit = true;
     pulse.enable = true;
+    wireplumber.enable = true;
   };
 
-  # Sound mixer
+  # Audio control utilities
   environment.systemPackages = with pkgs; [
     pulsemixer
   ];
