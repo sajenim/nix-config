@@ -8,5 +8,4 @@ switch *ARGS:
   sudo nixos-rebuild switch --flake .#{{ARGS}}
 
 deploy *ARGS:
-  nixos-rebuild switch --flake .#{{ARGS}} --target-host {{ARGS}} --use-remote-sudo
-
+  nixos-rebuild switch -S --flake .#{{ARGS}} --target-host {{ARGS}}
