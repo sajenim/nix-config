@@ -1,4 +1,4 @@
-{pkgs, ...}: {
+{pkgs, config, ...}: {
   imports = [
     ./direnv.nix
     ./starship.nix
@@ -21,7 +21,7 @@
     enableCompletion = true;
 
     # Configuration directory
-    dotDir = ".config/zsh";
+    dotDir = "${config.xdg.configHome}/zsh";
 
     shellAliases = {
       # Single letter aliases

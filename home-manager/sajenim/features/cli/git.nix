@@ -1,12 +1,14 @@
 {...}: {
   programs.git = {
     enable = true;
-    userName = "jasmine";
-    userEmail = "its.jassy@pm.me";
-    extraConfig = {
+    settings = {
       init.defaultBranch = "master";
+      user = {
+        name = "jasmine";
+        email = "its.jassy@pm.me";
+        signingkey = "8563E358D4E8040E";
+      };
       commit.gpgsign = "true";
-      user.signingkey = "8563E358D4E8040E";
     };
   };
 }

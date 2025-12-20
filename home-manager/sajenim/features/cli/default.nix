@@ -18,6 +18,6 @@
       unstable.rmapi
     ]
     ++ [
-      inputs.remarks.packages.${pkgs.system}.default
+      inputs.remarks.packages.${pkgs.stdenv.hostPlatform.system}.default
     ];
 }

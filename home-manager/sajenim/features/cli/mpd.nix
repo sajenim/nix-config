@@ -2,7 +2,7 @@
 
   # Install some applications for managing mpd 
   home.packages = with pkgs; [
-    mpc-cli
+    mpc
     ncmpcpp
   ];
 

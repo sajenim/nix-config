@@ -15,7 +15,7 @@
       # Picture viewer
       pkgs.xfce.ristretto
       # Install our XMonad and Xmobar configuration
-      inputs.xmonad-config.packages.${pkgs.system}.default
+      inputs.xmonad-config.packages.${pkgs.stdenv.hostPlatform.system}.default
     ];
   };
 

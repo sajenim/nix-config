@@ -27,10 +27,10 @@
     ]
     ++ [
       # Our personal neovim configuration.
-      inputs.nixvim.packages.${pkgs.system}.default
+      inputs.nixvim.packages.${pkgs.stdenv.hostPlatform.system}.default
     ]
     # Install jetbrains IDEs with plugins
-    ++ (with inputs.nix-jetbrains-plugins.lib."${system}"; [
+    ++ (with inputs.nix-jetbrains-plugins.lib."${pkgs.stdenv.hostPlatform.system}"; [
       (buildIdeWithPlugins pkgs.jetbrains "idea-ultimate" [
         "IdeaVIM"
         "gruvbox-material-dark"

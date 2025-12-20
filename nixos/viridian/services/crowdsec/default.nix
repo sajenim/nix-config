@@ -15,6 +15,11 @@ in {
     inputs.crowdsec.overlays.default
   ];
 
+  disabledModules = [
+    "services/security/crowdsec.nix"
+    "services/security/crowdsec-firewall-bouncer.nix"
+  ];
+
   age.secrets.enrollment-key = {
     rekeyFile = ./enrollment_key.age;
     owner = "crowdsec";
