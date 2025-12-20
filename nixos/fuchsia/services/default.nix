@@ -6,7 +6,6 @@
     ./flatpak
     ./internet-sharing
     ./libinput
-    ./printing
     ./snapper
     ./ssh
     ./udev
