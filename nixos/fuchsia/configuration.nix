@@ -6,7 +6,7 @@
     # Our user configuration and optional user units
     ../common/users/sajenim
     ../common/users/sajenim/steam
-    ../common/users/sajenim/xmonad
+    ../common/users/sajenim/jade
 
     # Optional components
     ../common/optional/yubikey.nix

@@ -1,4 +1,8 @@
-{pkgs, config, ...}: {
+{
+  pkgs,
+  config,
+  ...
+}: {
   imports = [
     ./direnv.nix
     ./starship.nix
@@ -47,10 +51,25 @@
     ];
 
     # Extra commands that should be added to '.zshrc'
-    initContent = ''
+    initContent = /* sh */ ''
       bindkey "^[[1;5C" forward-word
       bindkey "^[[1;5D" backward-word
       export PATH
+
+      # Auto-set wezterm tab title based on directory
+      chpwd() {
+        if [[ -d .git ]]; then
+          # Use git repo name
+          local repo=$(basename $(git rev-parse --show-toplevel 2>/dev/null))
+          wezterm cli set-tab-title "$repo" 2>/dev/null
+        elif [[ $(pwd) =~ "/home/sajenim/.repositories/personal/([^/]+)" ]]; then
+          # Use directory name for project dirs
+          wezterm cli set-tab-title "''${match[1]}" 2>/dev/null
+        fi
+      }
+
+      # Run once on shell startup
+      chpwd
     '';
   };
 }

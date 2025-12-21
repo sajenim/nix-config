@@ -22,9 +22,6 @@
       # File Management
       fd ranger tree
 
-      # Graphics & Screenshots
-      feh scrot
-
       # Networking
       curl nmap sshfs wget
 

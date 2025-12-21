@@ -4,6 +4,16 @@ local wezterm = require("wezterm")
 -- Log warnings or generate errors if we define an invalid configuration option
 local config = wezterm.config_builder()
 
+-- Format window title to prefer explicit tab titles over process names
+wezterm.on('format-window-title', function(tab, pane, tabs, panes, config)
+  -- Use explicit tab title if set, otherwise fall back to process name
+  if tab.tab_title and tab.tab_title ~= "" then
+    return tab.tab_title
+  end
+  -- Fallback to active pane's title (process name)
+  return tab.active_pane.title
+end)
+
 --
 -- General configuration options.
 --
@@ -20,8 +30,38 @@ config.animation_fps = 144
 config.font = wezterm.font("Fisa Code")
 config.font_size = 10.0
 
--- Enable gruvbox colour scheme
-config.color_scheme = "gruvbox_material_dark_medium"
+-- Gruvbox Material Dark color scheme
+config.colors = {
+	foreground = "#D4BE98",
+	background = "#282828",
+	cursor_bg = "#A89984",
+	cursor_fg = "#3C3836",
+	cursor_border = "#A89984",
+	selection_fg = "#A89984",
+	selection_bg = "#3C3836",
+
+	ansi = {
+		"#282828", -- black (bg0)
+		"#EA6962", -- red
+		"#A9B665", -- green
+		"#D8A657", -- yellow
+		"#7DAEA3", -- blue
+		"#D3869B", -- purple
+		"#89B482", -- aqua
+		"#D4BE98", -- white (fg0)
+	},
+
+	brights = {
+		"#7C6F65", -- bright black (grey0)
+		"#EA6962", -- bright red
+		"#A9B665", -- bright green
+		"#D8A657", -- bright yellow
+		"#7DAEA3", -- bright blue
+		"#D3869B", -- bright purple
+		"#89B482", -- bright aqua
+		"#DDC7A1", -- bright white (fg1)
+	},
+}
 
 -- Pad window borders
 config.window_padding = {
@@ -40,39 +80,37 @@ config.use_fancy_tab_bar = false
 config.tab_max_width = 32
 
 -- Tab bar colors
-config.colors = {
-	tab_bar = {
-		background = "#32302f",
-		active_tab = {
-			bg_color = "#32302f",
-			fg_color = "#7daea3",
-			intensity = "Bold",
-			italic = true,
-		},
-		inactive_tab = {
-			bg_color = "#32302f",
-			fg_color = "#a89984",
-			intensity = "Bold",
-			italic = true,
-		},
-		inactive_tab_hover = {
-			bg_color = "#32302f",
-			fg_color = "#a89984",
-			intensity = "Bold",
-			italic = true,
-		},
-		new_tab = {
-			bg_color = "#32302f",
-			fg_color = "#a89984",
-			intensity = "Bold",
-			italic = true,
-		},
-		new_tab_hover = {
-			bg_color = "#32302f",
-			fg_color = "#a89984",
-			intensity = "Bold",
-			italic = true,
-		},
+config.colors.tab_bar = {
+	background = "#32302f",
+	active_tab = {
+		bg_color = "#32302f",
+		fg_color = "#7daea3",
+		intensity = "Bold",
+		italic = true,
+	},
+	inactive_tab = {
+		bg_color = "#32302f",
+		fg_color = "#a89984",
+		intensity = "Bold",
+		italic = true,
+	},
+	inactive_tab_hover = {
+		bg_color = "#32302f",
+		fg_color = "#a89984",
+		intensity = "Bold",
+		italic = true,
+	},
+	new_tab = {
+		bg_color = "#32302f",
+		fg_color = "#a89984",
+		intensity = "Bold",
+		italic = true,
+	},
+	new_tab_hover = {
+		bg_color = "#32302f",
+		fg_color = "#a89984",
+		intensity = "Bold",
+		italic = true,
 	},
 }
 
@@ -197,7 +235,9 @@ config.key_tables = {
 	tab_mode = {
 		{ -- Create new tab
 			key = "n",
-			action = wezterm.action.SpawnTab("CurrentPaneDomain"),
+			action = wezterm.action.SpawnCommandInNewTab({
+				cwd = wezterm.home_dir,
+			}),
 		},
 		{ -- Close current tab
 			key = "q",
