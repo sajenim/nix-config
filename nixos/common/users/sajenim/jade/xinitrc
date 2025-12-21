@@ -13,5 +13,11 @@ xset s off -dpms
 # Fix for pinentry bug on NixOS
 gpgconf --reload gpg-agent
 
+# Import X display into systemd user environment
+systemctl --user import-environment DISPLAY XAUTHORITY
+
+# Start XDG desktop portal backend
+systemctl --user restart xdg-desktop-portal-gtk.service
+
 # Launch window manager
 exec xmonad
