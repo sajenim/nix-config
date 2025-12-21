@@ -22,6 +22,15 @@
       pkgs.unstable.gruvbox-material-gtk-theme
       # Install our XMonad and Xmobar configuration
       inputs.xmonad-config.packages.${pkgs.stdenv.hostPlatform.system}.default
+      # Install jade wallpapers
+      (pkgs.stdenv.mkDerivation {
+        name = "jade-wallpapers";
+        src = "${inputs.self}/nixos/common/users/sajenim/jade/assets";
+        installPhase = ''
+          mkdir -p $out/share/backgrounds/jade
+          cp -r $src/* $out/share/backgrounds/jade/
+        '';
+      })
     ];
 
     # Set default terminal for the desktop environment

@@ -1,22 +1,30 @@
 #!/bin/bash
 
-# Setup monitors (machine-specific - consider making configurable)
+#
+# Personal Configuration
+#
+
+# Setup monitors
 xrandr --output HDMI-A-0 --mode 1920x1080 \
   --output DisplayPort-0 --mode 2560x1440 --right-of HDMI-A-0
-
-# Apply wallpaper
-feh --bg-center ~/.repositories/personal/nix-config/assets/chinatown.png
-
-# Disable screen saver and DPMS features
-xset s off -dpms
 
 # Fix for pinentry bug on NixOS
 gpgconf --reload gpg-agent
 
-# Import X display into systemd user environment
+#
+# jade Desktop Environment
+#
+
+# Apply gruvbox-themed wallpaper
+feh --bg-center /run/current-system/sw/share/backgrounds/jade/chinatown.png
+
+# Disable screen saver and DPMS features
+xset s off -dpms
+
+# Import X display into systemd user environment for portal backends
 systemctl --user import-environment DISPLAY XAUTHORITY
 
-# Start XDG desktop portal backend
+# Start XDG desktop portal backend for GTK apps (file pickers, etc.)
 systemctl --user restart xdg-desktop-portal-gtk.service
 
 # Launch window manager
