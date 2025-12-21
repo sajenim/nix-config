@@ -3,23 +3,38 @@
 My [NixOS](https://nixos.org/) and [Home-Manager](https://github.com/nix-community/home-manager) config files.
 Based upon [Misterio77's starter configs](https://github.com/Misterio77/nix-starter-configs).
 
-> This repo is often neglected and doesn't necesarrily follow best practices.  
+> This repo is often neglected and doesn't necessarily follow best practices.
 > I recommend only using this repo for inspiration and instead use this
 > [boilerplate](https://github.com/Misterio77/nix-starter-configs/tree/main/standard)
 
 ## Preview
 ![screenshot](assets/2024-01-18-224416_4480x1440_scrot.png)
 
+## Hosts
+* **fuchsia** - Desktop gaming and development machine with full desktop environment
+* **viridian** - Server hosting multimedia services, git forge, and various web services
+
 ## Features
-* __Opt-in persistance with ephermeral btrfs.__
+* __Opt-in persistence with ephemeral btrfs root and 14-day snapshot retention.__
+* __Snapper automated snapshots with tiered retention (24h/7d/4w/12m).__
+* __Automated borgbackup of mutable service and container data.__
+* __Traefik reverse proxy with geoblock and crowdsec security middleware.__
 * __Secrets managed with agenix and rekeyed with yubikey.__
 * __Standalone nixvim configuration for neovim.__
 * __Custom haskell packages for xmonad & xmobar.__
 * __Declarative minecraft server with nix-minecraft.__
-* __Borgbackup of mutable service/container data.__
 * __Media server with typical *arr stack.__
-* __FQDN with private DNS for all internal services.__
-* __Crowdsecurity for all public services.__
+* __Private DNS with .home.arpa for all internal services.__
+
+## Usage
+Common tasks are available via the justfile:
+```sh
+just build <hostname>         # Build configuration without switching
+just switch <hostname>        # Build and switch to new configuration
+just deploy <hostname>        # Deploy to remote host over SSH
+just update                   # Update all flake inputs
+just update-input <input>     # Update specific flake input
+```
 
 ## Installation
 ```sh
@@ -40,7 +55,7 @@ mount -o compress=zstd,subvol={root,nix,persist,swap} /dev/nvme0n1p2 /mnt/{nix,p
 mount /dev/nvme0n1p1 /mnt/boot
 
 # Clone the configuration files and enter repo
-git clone https://github.com/sajenim/dotfiles.nix.git && cd dotfiles.nix
+git clone https://github.com/sajenim/nix-config.git && cd nix-config
 
 # Install our system configuration
 nixos-install --flake .#hostname

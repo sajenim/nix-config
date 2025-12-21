@@ -9,3 +9,9 @@ switch *ARGS:
 
 deploy *ARGS:
   nixos-rebuild switch -S --flake .#{{ARGS}} --target-host {{ARGS}}
+
+update:
+  nix flake update
+
+update-input INPUT:
+  nix flake update {{INPUT}}
