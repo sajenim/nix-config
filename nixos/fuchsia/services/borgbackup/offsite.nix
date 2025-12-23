@@ -52,6 +52,7 @@
       # Dotfiles (critical user configuration)
       "/btrfs-subvolumes/hm-sajenim/.ssh"
       "/btrfs-subvolumes/hm-sajenim/.gnupg"
+      "/btrfs-subvolumes/hm-sajenim/.local/bin"
 
       # Persistent files (actual storage location)
       "/persist/etc/machine-id"

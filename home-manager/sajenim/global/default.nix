@@ -39,6 +39,9 @@
     sessionVariables = {
       EDITOR = "nvim"; # Default text editor for CLI operations
     };
+    sessionPath = [
+      "$HOME/.local/bin" # User scripts and executables
+    ];
   };
 
   # Automatically restart systemd user services on configuration changes
