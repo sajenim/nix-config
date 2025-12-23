@@ -41,8 +41,9 @@
   home.file = {
     ".ideavimrc".source = ./ideavimrc;
 
-    # Global claude configuration
-    ".claude/settings.json".source = ./claude-settings.json;
-    ".claude/CLAUDE.md".source = ./CLAUDE.md;
+    # Claude configuration (link individual items to allow Claude Code to write state files)
+    ".claude/CLAUDE.md".source = ./claude/CLAUDE.md;
+    ".claude/settings.json".source = ./claude/settings.json;
+    ".claude/commands".source = ./claude/commands;
   };
 }
