@@ -5,7 +5,7 @@ in {
     # # Music collection manager for Usenet and BitTorrent users
     lidarr = {
       autoStart = true;
-      image = "ghcr.io/hotio/lidarr:release-2.9.6.4552";
+      image = "ghcr.io/hotio/lidarr:release-3.1.0.4875";
       ports = [
         "${port}:8686/tcp" # WebUI
       ];

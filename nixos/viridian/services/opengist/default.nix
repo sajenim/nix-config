@@ -5,7 +5,7 @@ in {
   # OpenGist service configuration
   virtualisation.oci-containers.containers = {
     opengist = {
-      image = "ghcr.io/thomiceli/opengist:1.10";
+      image = "ghcr.io/thomiceli/opengist:1.11.1";
       ports = [
         "${port}:${port}"
       ];
