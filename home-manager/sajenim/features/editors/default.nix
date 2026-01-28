@@ -31,7 +31,7 @@
     ]
     # Install jetbrains IDEs with plugins
     ++ (with inputs.nix-jetbrains-plugins.lib."${pkgs.stdenv.hostPlatform.system}"; [
-      (buildIdeWithPlugins pkgs.jetbrains "idea-ultimate" [
+      (buildIdeWithPlugins pkgs.jetbrains "idea" [
         "IdeaVIM"
         "gruvbox-material-dark"
       ])

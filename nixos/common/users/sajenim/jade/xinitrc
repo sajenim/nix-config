@@ -12,11 +12,11 @@ xrandr --output HDMI-A-0 --mode 1920x1080 \
 gpgconf --reload gpg-agent
 
 #
-# jade Desktop Environment
+# JADE Desktop Experience
 #
 
 # Apply gruvbox-themed wallpaper
-feh --bg-center /run/current-system/sw/share/backgrounds/jade/chinatown.png
+feh --bg-center ~/.repositories/personal/nix-config/assets/chinatown.png
 
 # Disable screen saver and DPMS features
 xset s off -dpms

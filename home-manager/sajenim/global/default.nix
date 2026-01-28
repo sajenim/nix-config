@@ -23,8 +23,8 @@
         builtins.elem (lib.getName pkg) [
           # Development tools
           "claude-code"
-          "idea-ultimate"
-          "idea-ultimate-with-plugins"
+          "idea"
+          "idea-with-plugins"
         ];
     };
   };
