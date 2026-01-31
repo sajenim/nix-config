@@ -70,13 +70,7 @@
 
       # Install plugins
       experimental.plugins = {
-        # Block or allow requests based on their country of origin.
-        geoblock = {
-          moduleName = "github.com/PascalMinder/geoblock";
-          version = "v0.2.7";
-        };
-
-        # Authorize or block requests from IPs based on there reputation and behaviour.
+        # Authorize or block requests from IPs based on their reputation and behaviour.
         bouncer = {
           moduleName = "github.com/maxlerebourg/crowdsec-bouncer-traefik-plugin";
           version = "v1.3.5";
@@ -101,7 +95,6 @@
 
           # Enable some middlewares on all routers that use this entrypoint
           http.middlewares = [
-            "geoblock@file"
             "crowdsec@file"
           ];
 

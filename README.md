@@ -18,7 +18,7 @@ Based upon [Misterio77's starter configs](https://github.com/Misterio77/nix-star
 * __Opt-in persistence with ephemeral btrfs root and 14-day snapshot retention.__
 * __Snapper automated snapshots with tiered retention (24h/7d/4w/12m).__
 * __Automated borgbackup of mutable service and container data.__
-* __Traefik reverse proxy with geoblock and crowdsec security middleware.__
+* __Traefik reverse proxy with crowdsec security middleware.__
 * __Secrets managed with agenix and rekeyed with yubikey.__
 * __Standalone nixvim configuration for neovim.__
 * __Custom haskell packages for xmonad & xmobar.__
