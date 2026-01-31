@@ -30,8 +30,8 @@
       inputs.nixvim.packages.${pkgs.stdenv.hostPlatform.system}.default
     ]
     # Install jetbrains IDEs with plugins
-    ++ (with inputs.nix-jetbrains-plugins.lib."${pkgs.stdenv.hostPlatform.system}"; [
-      (buildIdeWithPlugins pkgs.jetbrains "idea" [
+    ++ (with inputs.nix-jetbrains-plugins.lib; [
+      (buildIdeWithPlugins pkgs "idea" [
         "IdeaVIM"
         "gruvbox-material-dark"
       ])
