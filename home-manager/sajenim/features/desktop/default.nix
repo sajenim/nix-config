@@ -1,6 +1,7 @@
 {pkgs, ...}: {
   imports = [
     ./cava
+    ./discord
     ./mpv
     ./obs
   ];

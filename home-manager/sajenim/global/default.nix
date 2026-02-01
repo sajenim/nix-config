@@ -21,6 +21,8 @@
       # all allowed packages here rather than scattering predicates across feature modules.
       allowUnfreePredicate = pkg:
         builtins.elem (lib.getName pkg) [
+          "discord"
+
           # Development tools
           "claude-code"
           "idea"
