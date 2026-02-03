@@ -10,12 +10,24 @@
   --bg4: #665c54;
   --bg5: #7c6f64;
 
+  --bg-diff-green: #34381b;
+  --bg-diff-red: #402120;
+  --bg-diff-blue: #0e363e;
+
+  --bg-statusline1: #32302f;
+  --bg-statusline2: #3a3735;
+  --bg-statusline3: #504945;
+
+  --bg-current-word: #3c3836;
+
+  --bg-visual-red: #4c3432;
+  --bg-visual-yellow: #4f422e;
+  --bg-visual-green: #3b4439;
+  --bg-visual-blue: #374141;
+  --bg-visual-purple: #443840;
+
   --fg0: #d4be98;
   --fg1: #ddc7a1;
-
-  --grey0: #7c6f64;
-  --grey1: #928374;
-  --grey2: #a89984;
 
   --red: #ea6962;
   --orange: #e78a4e;
@@ -24,49 +36,74 @@
   --aqua: #89b482;
   --blue: #7daea3;
   --purple: #d3869b;
+
+  --grey0: #7c6f64;
+  --grey1: #928374;
+  --grey2: #a89984;
 }
 
 .theme-dark {
   /* Text */
-  --text-default: var(--fg0);               /* main chat */
-  --text-strong: var(--fg1);                /* usernames, selected channel, server accent */
-  --text-subtle: var(--grey2);              /* user status, is typing */
-  --text-muted: var(--grey2);               /* DM friendslist, user status */
+  --text-default: var(--fg0);
+  --text-strong: var(--fg1);
+  --text-subtle: var(--grey2);
+  --text-muted: var(--grey2);
   --white: var(--fg0);
 
-  /* Channels */
-  --channels-default: var(--grey2);         /* read channel text */
-  --channel-icon: var(--grey2);             /* read channel icon */
-  --interactive-text-active: var(--fg1);    /* unread channel text */
-  --icon-subtle: var(--fg1);                /* unread channel icon */
-  --interactive-text-hover: var(--grey2);   /* hovered read channel text */
-
-  /* Other icons */
+  /* Icons */
+  --icon-strong: var(--fg1);
+  --icon-subtle: var(--fg1);
   --icon-muted: var(--grey2);
-  --icon-strong: var(--fg1);                /* selected channel */
-  --interactive-icon-default: var(--grey2);
+
+  /* Interactive */
+  --interactive-text-active: var(--fg1);
+  --interactive-text-hover: var(--grey2);
   --interactive-text-default: var(--grey2);
+  --interactive-icon-default: var(--grey2);
 
-  /* Placeholders */
+  /* Control */
+  --control-primary-text-default: var(--fg1);
+  --control-primary-text-hover: var(--fg0);
+  --control-primary-background-default: var(--bg2);
+  --control-primary-background-hover: var(--bg3);
+  --control-secondary-text-default: var(--grey2);
+  --control-secondary-text-hover: var(--fg0);
+
+  /* Channels */
+  --channels-default: var(--grey2);
+  --channel-icon: var(--grey2);
   --channel-text-area-placeholder: var(--grey2);
-  --input-placeholder-text-default: var(--grey2);
-
-  /* Backgrounds */
-  --background-base-lowest: var(--bg-dim);  /* sidebar, channel list, topbar */
-  --background-base-lower: var(--bg0);      /* main chat, member list */
-  --background-base-low: var(--bg0);        /* user panel */
-
-  --background-surface-high: var(--bg1);    /* link previews, server hover, active dm */
-  --background-surface-higher: var(--bg1);  /* active now game/status */
-
-  --background-mod-muted: var(--bg1);       /* active now name bubble */
-  --background-mod-subtle: var(--bg1);      /* server folders, add server */
-  --background-mod-normal: var(--bg2);      /* hover states */
-  --background-mod-strong: var(--bg1);      /* username tag bubbles */
 
   /* Input */
-  --input-background-default: var(--bg0);   /* search bar input box*/
-  --chat-background-default: var(--bg1);    /* chat input box */
+  --input-placeholder-text-default: var(--grey2);
+  --input-background-default: var(--bg0);
+  --chat-background-default: var(--bg1);
+
+  /* Background: Base */
+  --background-base-low: var(--bg0);
+  --background-base-lower: var(--bg0);
+  --background-base-lowest: var(--bg-dim);
+
+  /* Background: Surface */
+  --background-surface-high: var(--bg0);
+  --background-surface-higher: var(--bg1);
+  --background-surface-highest: var(--bg2);
+
+  /* Background: Modifier */
+  --background-mod-strong: var(--bg1);
+  --background-mod-normal: var(--bg2);
+  --background-mod-subtle: var(--bg1);
+  --background-mod-muted: var(--bg1);
+
+  /* Background: Misc */
+  --background-brand: var(--bg-visual-green);
+  --background-code: var(--bg1);
+  --user-profile-overlay-background: var(--bg2);
+  --message-mentioned-background-default: var(--bg-current-word);
+  --message-mentioned-background-hover: var(--bg-current-word);
+
+  /* Border */
+  --border-normal: var(--bg0);
 
   /* Scrollbar */
   --scrollbar-thin-thumb: var(--green);
