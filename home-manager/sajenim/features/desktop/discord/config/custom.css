@@ -85,7 +85,7 @@
   --background-base-lowest: var(--bg-dim);
 
   /* Background: Surface */
-  --background-surface-high: var(--bg0);
+  --background-surface-high: var(--bg1);
   --background-surface-higher: var(--bg1);
   --background-surface-highest: var(--bg2);
 
