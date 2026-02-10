@@ -29,7 +29,7 @@
       htop
 
       # System Utilities
-      bc xclip
+      bc xclip xcolor
 
       # Text Processing
       ripgrep
