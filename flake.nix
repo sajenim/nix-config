@@ -2,36 +2,28 @@
   description = "NixOS + Home Manager configuration with flakes";
 
   inputs = {
-    # Nixpkgs
+    # Core
     nixpkgs.url = "github:nixos/nixpkgs/nixos-25.11";
     nixpkgs-unstable.url = "github:nixos/nixpkgs/nixos-unstable";
+    home-manager.url = "github:nix-community/home-manager/release-25.11";
+    home-manager.inputs.nixpkgs.follows = "nixpkgs";
 
-    # Home manager
-    home-manager = {
-      url = "github:nix-community/home-manager/release-25.11";
-      inputs.nixpkgs.follows = "nixpkgs";
-    };
-
-    # Flakes our configuration is dependent on.
+    # System management
     agenix.url = "github:ryantm/agenix";
-    agenix-rekey = {
-      url = "github:oddlama/agenix-rekey";
-      inputs.nixpkgs.follows = "nixpkgs";
-    };
+    agenix-rekey.url = "github:oddlama/agenix-rekey";
+    agenix-rekey.inputs.nixpkgs.follows = "nixpkgs";
     impermanence.url = "github:nix-community/impermanence";
-
-    # Security enhancement.
     crowdsec.url = "git+https://codeberg.org/kampka/nix-flake-crowdsec.git";
 
-    # Our personal flakes
+    # Personal
     nixvim.url = "git+https://git.sajenim.dev/jasmine/nixvim-config.git";
     xmonad-config.url = "git+https://git.sajenim.dev/jasmine/xmonad-config.git";
 
-    # Add any other flake you might need.
+    # Applications
+    claude-code.url = "github:sadjow/claude-code-nix";
+    nix-jetbrains-plugins.url = "github:theCapypara/nix-jetbrains-plugins";
     nix-minecraft.url = "github:Infinidoge/nix-minecraft";
     remarks.url = "github:Scrybbling-together/remarks";
-    nix-jetbrains-plugins.url = "github:theCapypara/nix-jetbrains-plugins";
-    claude-code.url = "github:sadjow/claude-code-nix";
   };
 
   outputs = {
