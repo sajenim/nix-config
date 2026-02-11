@@ -3,6 +3,7 @@
   # Install some applications for managing mpd
   home.packages = with pkgs; [
     mpc
+    mpd-discord-rpc
     ncmpcpp
   ];
 
@@ -24,18 +25,5 @@
         server "127.0.0.1" # MPD must connect to the local sound server
       }
     '';
-  };
-
-  # Discord rich presence for MPD
-  services.mpd-discord-rpc = {
-    enable = true;
-    settings = {
-      hosts = ["localhost:6600"];
-      format = {
-        details = "$title";
-        state = "$artist - $album";
-        timestamp = "elapsed";
-      };
-    };
   };
 }

@@ -27,5 +27,8 @@ systemctl --user import-environment DISPLAY XAUTHORITY
 # Start XDG desktop portal backend for GTK apps (file pickers, etc.)
 systemctl --user restart xdg-desktop-portal-gtk.service
 
+# Discord rich presence for MPD
+mpd-discord-rpc &
+
 # Launch window manager
 exec xmonad
