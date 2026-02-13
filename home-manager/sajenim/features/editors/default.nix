@@ -1,9 +1,14 @@
 {
   inputs,
+  osConfig,
   pkgs,
-  lib,
   ...
 }: {
+  # MCP server modules
+  imports = [
+    inputs.remarkable-mcp.homeManagerModules.default
+  ];
+
   # Add claude-code overlay to make the package available
   nixpkgs.overlays = [
     inputs.claude-code.overlays.default
@@ -36,6 +41,25 @@
         "gruvbox-material-dark"
       ])
     ]); # https://github.com/theCapypara/nix-jetbrains-plugins
+
+  # reMarkable MCP server for Claude Code integration
+  services.remarkable-mcp = {
+    enable = true;
+
+    # Direct USB connection
+    mode = "ssh";
+
+    # OCR credentials
+    secrets = {
+      googleVisionKeyFile = osConfig.age.secrets.google-vision.path;
+    };
+
+    # Device connection and OCR configuration
+    remarkable = {
+      host = "remarkable";
+      ocrBackend = "google";
+    };
+  };
 
   # Copy our configuration files to home directory
   home.file = {

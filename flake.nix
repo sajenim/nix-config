@@ -24,6 +24,7 @@
     nix-jetbrains-plugins.url = "github:theCapypara/nix-jetbrains-plugins";
     nix-minecraft.url = "github:Infinidoge/nix-minecraft";
     remarks.url = "github:Scrybbling-together/remarks";
+    remarkable-mcp.url = "github:sajenim/remarkable-mcp-nix";
   };
 
   outputs = {
