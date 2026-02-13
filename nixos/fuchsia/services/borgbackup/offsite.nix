@@ -41,7 +41,6 @@
       "/btrfs-subvolumes/hm-sajenim/Music"
       "/btrfs-subvolumes/hm-sajenim/Downloads"
       "/btrfs-subvolumes/hm-sajenim/Academics"
-      "/btrfs-subvolumes/hm-sajenim/Library"
 
       # Dotfiles (critical user configuration)
       "/btrfs-subvolumes/hm-sajenim/.ssh"
