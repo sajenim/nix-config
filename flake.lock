@@ -51,11 +51,11 @@
         "nixpkgs": "nixpkgs_2"
       },
       "locked": {
-        "lastModified": 1769519544,
-        "narHash": "sha256-OADcfhtc1bNrR1idm0j8K4qSOXz6yid5zWh7p2HCO9I=",
+        "lastModified": 1770951502,
+        "narHash": "sha256-MtgcZ9wZQYCZoLQTbhqn770iQC1h8+46bx6Q1HtZSv4=",
         "owner": "sadjow",
         "repo": "claude-code-nix",
-        "rev": "fdea255c6dac5c1414ceb2674de28edc4bd13ea5",
+        "rev": "a697f13682fc60cda6e93eada4a9e2e4c7bac62e",
         "type": "github"
       },
       "original": {
@@ -669,6 +669,22 @@
     },
     "nixpkgs_10": {
       "locked": {
+        "lastModified": 1770562336,
+        "narHash": "sha256-ub1gpAONMFsT/GU2hV6ZWJjur8rJ6kKxdm9IlCT0j84=",
+        "owner": "NixOS",
+        "repo": "nixpkgs",
+        "rev": "d6c71932130818840fc8fe9509cf50be8c64634f",
+        "type": "github"
+      },
+      "original": {
+        "owner": "NixOS",
+        "ref": "nixos-unstable",
+        "repo": "nixpkgs",
+        "type": "github"
+      }
+    },
+    "nixpkgs_11": {
+      "locked": {
         "lastModified": 1761373498,
         "narHash": "sha256-Q/uhWNvd7V7k1H1ZPMy/vkx3F8C13ZcdrKjO7Jv7v0c=",
         "owner": "NixOS",
@@ -683,7 +699,7 @@
         "type": "github"
       }
     },
-    "nixpkgs_11": {
+    "nixpkgs_12": {
       "locked": {
         "lastModified": 1730157240,
         "narHash": "sha256-P8wF4ag6Srmpb/gwskYpnIsnspbjZlRvu47iN527ABQ=",
@@ -699,7 +715,7 @@
         "type": "github"
       }
     },
-    "nixpkgs_12": {
+    "nixpkgs_13": {
       "locked": {
         "lastModified": 1739863612,
         "narHash": "sha256-UbtgxplOhFcyjBcNbTVO8+HUHAl/WXFDOb6LvqShiZo=",
@@ -717,11 +733,11 @@
     },
     "nixpkgs_2": {
       "locked": {
-        "lastModified": 1769421245,
-        "narHash": "sha256-m5QLKjpdhbDrhyrUbEm5Haq3lqE5Z6xh2tab5vTHUTo=",
+        "lastModified": 1770843696,
+        "narHash": "sha256-LovWTGDwXhkfCOmbgLVA10bvsi/P8eDDpRudgk68HA8=",
         "owner": "NixOS",
         "repo": "nixpkgs",
-        "rev": "5b265bda51b42a2a85af0a543c3e57b778b01b7d",
+        "rev": "2343bbb58f99267223bc2aac4fc9ea301a155a16",
         "type": "github"
       },
       "original": {
@@ -849,11 +865,11 @@
         "nixvim": "nixvim_2"
       },
       "locked": {
-        "lastModified": 1769621281,
-        "narHash": "sha256-JeGPV+V8qTkVv8bZjLVXAI8WSSGgyOvZ8v7pAVDdkKU=",
+        "lastModified": 1770732212,
+        "narHash": "sha256-J5x2kzwav+QjMaNq94VZHWURRJIkjU6X/Cgh4S00GqM=",
         "ref": "refs/heads/master",
-        "rev": "5a342b4650e538f4c7c8356201a06aaf670b84ad",
-        "revCount": 111,
+        "rev": "f3b813522668e975cdf07e9f007e6a2d8638155b",
+        "revCount": 112,
         "type": "git",
         "url": "https://git.sajenim.dev/jasmine/nixvim-config.git"
       },
@@ -911,7 +927,7 @@
       "inputs": {
         "flake-utils": "flake-utils_6",
         "nix-github-actions": "nix-github-actions",
-        "nixpkgs": "nixpkgs_11",
+        "nixpkgs": "nixpkgs_12",
         "systems": "systems_10",
         "treefmt-nix": "treefmt-nix_2"
       },
@@ -952,10 +968,28 @@
         "type": "github"
       }
     },
+    "remarkable-mcp": {
+      "inputs": {
+        "nixpkgs": "nixpkgs_10"
+      },
+      "locked": {
+        "lastModified": 1770990042,
+        "narHash": "sha256-wMgSWEdjAq6XPfnFZeVeQxFxHuNYH1V8THEey8qx7xs=",
+        "owner": "sajenim",
+        "repo": "remarkable-mcp-nix",
+        "rev": "6aaaf5f92e52b718845082f78ef98b2b560bc567",
+        "type": "github"
+      },
+      "original": {
+        "owner": "sajenim",
+        "repo": "remarkable-mcp-nix",
+        "type": "github"
+      }
+    },
     "remarks": {
       "inputs": {
         "flake-utils": "flake-utils_5",
-        "nixpkgs": "nixpkgs_10",
+        "nixpkgs": "nixpkgs_11",
         "poetry2nix": "poetry2nix"
       },
       "locked": {
@@ -985,6 +1019,7 @@
         "nixpkgs": "nixpkgs_7",
         "nixpkgs-unstable": "nixpkgs-unstable",
         "nixvim": "nixvim",
+        "remarkable-mcp": "remarkable-mcp",
         "remarks": "remarks",
         "xmonad-config": "xmonad-config"
       }
@@ -1189,7 +1224,7 @@
         "git-hooks": "git-hooks",
         "haskell-flake": "haskell-flake",
         "nixos-unified": "nixos-unified",
-        "nixpkgs": "nixpkgs_12"
+        "nixpkgs": "nixpkgs_13"
       },
       "locked": {
         "lastModified": 1770032742,
