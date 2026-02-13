@@ -20,17 +20,11 @@ in {
     "services/security/crowdsec-firewall-bouncer.nix"
   ];
 
-  age.secrets.enrollment-key = {
-    rekeyFile = ./enrollment_key.age;
-    owner = "crowdsec";
-    group = "crowdsec";
-  };
-
   services.crowdsec = {
     enable = true;
     package = inputs.crowdsec.packages."x86_64-linux".crowdsec;
     allowLocalJournalAccess = true;
-    enrollKeyFile = config.age.secrets.enrollment-key.path;
+    enrollKeyFile = config.age.secrets.crowdsec-enrollment.path;
     settings = {
       api.server = {
         listen_uri = "127.0.0.1:${port}";

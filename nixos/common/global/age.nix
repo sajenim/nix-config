@@ -10,6 +10,7 @@
 in {
   # Module imports
   imports = [
+    ./secrets.nix
     inputs.agenix.nixosModules.default
     inputs.agenix-rekey.nixosModules.default
   ];
@@ -35,8 +36,10 @@ in {
   # YubiKey-based secret rekeying
   age.rekey = {
     hostPubkey = ../../${hostname}/ssh_host_ed25519_key.pub;
-    masterIdentities = [../users/sajenim/agenix-rekey.pub];
+    masterIdentities = [
+      ../users/sajenim/agenix-rekey.pub
+    ];
     storageMode = "local";
-    localStorageDir = ./. + "/secrets/rekeyed/${config.networking.hostName}";
+    localStorageDir = ./. + "/secrets/rekeyed/${hostname}";
   };
 }

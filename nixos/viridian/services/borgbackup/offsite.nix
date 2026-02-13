@@ -3,11 +3,6 @@
   pkgs,
   ...
 }: {
-  # Encrypted passphrase for offsite borgbackup repository
-  age.secrets.borgbackup = {
-    rekeyFile = ./passphrase.age;
-  };
-
   # Create staging directory before borg service starts
   systemd.tmpfiles.rules = [
     "d /btrfs-subvolumes 0755 root root -"

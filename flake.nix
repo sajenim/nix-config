@@ -65,7 +65,7 @@
     # knows where it has too look for secrets and paths.
     agenix-rekey = inputs.agenix-rekey.configure {
       userFlake = self;
-      nodes = self.nixosConfigurations;
+      nixosConfigurations = self.nixosConfigurations;
     };
 
     # NixOS configuration entrypoint

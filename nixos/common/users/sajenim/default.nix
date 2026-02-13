@@ -25,7 +25,7 @@ in {
   home-manager = {
     extraSpecialArgs = {inherit inputs outputs;};
     users = {
-      sajenim = import "${inputs.self}/home-manager/sajenim/${config.networking.hostName}.nix";
+      sajenim = import "${inputs.self}/home-manager/sajenim/${hostname}.nix";
     };
     backupFileExtension = "bak";
   };

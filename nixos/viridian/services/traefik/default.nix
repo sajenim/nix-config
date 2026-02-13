@@ -13,13 +13,6 @@
     ./services.nix
   ];
 
-  age.secrets.traefik = {
-    # Environment variables for porkbun dns challenge
-    rekeyFile = ./environment.age;
-    owner = "traefik";
-    group = "traefik";
-  };
-
   # Ensure our log directory has correct permission to be accesible by crowdsec
   systemd.services.traefik.serviceConfig = {
     User = "traefik";
